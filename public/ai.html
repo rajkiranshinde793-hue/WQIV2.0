@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Water Quality Assistant</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ai.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="dashboard.html">Live Dashboard</a></li>
+                <li><a href="calibrations.html">Calibrations</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="ai.html" class="active">AI</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container ai-container">
+        <h1 class="page-title">AI Water Quality Assistant</h1>
+        
+        <!-- Chat Interface -->
+        <section class="chat-section">
+            <!-- Analyze Now Button -->
+            <div class="analyze-button-container">
+                <button id="analyze-now-btn" class="analyze-now-btn">
+                    <span class="btn-icon">🔬</span>
+                    <span class="btn-text">Analyze Now</span>
+                </button>
+            </div>
+            
+            <!-- Chat Messages Container -->
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <!-- Welcome message -->
+                    <div class="chat-message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Hello! I'm your AI Water Quality Assistant. I can analyze your water quality data and provide expert recommendations.</p>
+                            <p>Click <strong>"Analyze Now"</strong> to get started with a comprehensive analysis of your current water quality!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Input Area (Hidden initially) -->
+            <div id="chat-input-area" class="chat-input-area">
+                <input type="text" id="user-chat-input" class="user-chat-input" placeholder="Ask follow-up questions about your water quality..." />
+                <button id="send-chat-btn" class="send-chat-btn">
+                    <span>Send</span>
+                    <span class="send-icon">➤</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAH_qoGe9siWiQ_6OJYvRXWF_T-8Jg2P2U",
+        authDomain: "wqiv1-7588d.firebaseapp.com",
+        databaseURL: "https://wqiv1-7588d-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "wqiv1-7588d",
+        storageBucket: "wqiv1-7588d.firebasestorage.app",
+        messagingSenderId: "1045198749186",
+        appId: "1:1045198749186:web:52657bc9ca7ce4aa36311b"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script type="module" src="ai.js"></script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                    <span class="footer-logo-text">Water Quality Monitoring</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <span class="footer-contact-icon">📞</span>
+                    <span class="footer-contact-name">Raj Shinde:</span>
+                    <span class="footer-contact-phone">9767975375</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

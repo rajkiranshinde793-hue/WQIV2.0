@@ -1,0 +1,238 @@
+/* =========================================
+   ALERTS SPECIFIC STYLES
+========================================= */
+.alerts-container {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    color: var(--text-light);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* --- MAIN ALERT BANNER --- */
+.alert-banner {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    position: relative;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.card-label {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text-light);
+    opacity: 0.9;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-transform: uppercase;
+}
+
+.main-alert-text {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 20px; /* Pushes it down below the label */
+}
+
+/* Dynamic color classes added by JS */
+.text-danger { color: var(--primary-accent); }
+.text-safe { color: #00ff88; }
+
+/* --- THE INFO BUTTON & TOOLTIPS --- */
+.info-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    cursor: help;
+    transition: all 0.3s ease;
+    color: var(--text-light);
+    z-index: 5;
+}
+
+.info-btn:hover {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.info-tooltip {
+    visibility: hidden;
+    width: 180px;
+    background-color: rgba(6, 6, 25, 0.95);
+    color: var(--text-light);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid var(--primary-accent);
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    line-height: 1.4;
+    position: absolute;
+    z-index: 10;
+    bottom: 150%; 
+    left: 50%;
+    margin-left: -90px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.info-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--primary-accent) transparent transparent transparent;
+}
+
+.info-btn:hover .info-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- ALERTS TABLE --- */
+.table-wrapper {
+    width: 100%;
+    max-height: 400px; /* Locks the height so it doesn't take over the page */
+    overflow-y: auto;  /* Turns on vertical scrolling inside the box */
+    overflow-x: auto;  /* Keeps horizontal scrolling for mobile */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Custom Scrollbar for the table */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-accent);
+}
+
+.alerts-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; 
+}
+
+.alerts-table th, .alerts-table td {
+    padding: 18px 20px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--text-light);
+}
+
+/* --- STICKY HEADER FIX --- */
+.alerts-table th {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+    position: sticky; /* Pins the header to the top */
+    top: 0;
+    background: rgba(10, 10, 20, 0.95); /* Solid dark background so scrolling rows don't bleed through */
+    z-index: 10;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); /* Replaces bottom border for sticky elements */
+}
+
+/* Removes double borders on the outside edges */
+.alerts-table tr:first-child th { border-top: none; border-bottom: none; }
+.alerts-table tr:last-child td { border-bottom: none; }
+.alerts-table th:first-child, .alerts-table td:first-child { border-left: none; }
+.alerts-table th:last-child, .alerts-table td:last-child { border-right: none; }
+
+.alerts-table td {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.alerts-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Forces table to stay readable on mobile */
+}
+
+.alerts-table th, .alerts-table td {
+    padding: 18px 20px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--text-light);
+}
+
+/* Removes double borders on the outside edges */
+.alerts-table tr:first-child th { border-top: none; }
+.alerts-table tr:last-child td { border-bottom: none; }
+.alerts-table th:first-child, .alerts-table td:first-child { border-left: none; }
+.alerts-table th:last-child, .alerts-table td:last-child { border-right: none; }
+
+.alerts-table th {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.alerts-table td {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+@media (max-width: 900px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .main-alert-text {
+        font-size: 1.5rem;
+    }
+
+    /* Fix Tooltip Overflow on Mobile */
+    .info-tooltip {
+        left: auto;
+        right: -10px; 
+        margin-left: 0;
+    }
+
+    .info-tooltip::after {
+        left: auto;
+        right: 15px; 
+        margin-left: 0;
+    }
+}
