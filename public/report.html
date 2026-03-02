@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Report - Water Quality</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mode.css"> <!-- reuse mode styling -->
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo-link">
+        <img src="assets/Logo.png" class="logo-img">
+    </a>
+
+    <div class="nav-right">
+        <ul class="nav-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="dashboard.html">Live Dashboard</a></li>
+            <li><a href="calibrations.html">Calibrations</a></li>
+            <li><a href="alerts.html">Alerts</a></li>
+            <li><a href="ai.html">AI</a></li>
+            <li><a href="report.html" class="active">Download Report</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container mode-container">
+
+    <h1 class="page-title" style="text-align:center;">
+        GENERATE WATER QUALITY REPORT
+    </h1>
+
+    <div class="mode-cards-wrapper">
+
+        <!-- CURRENT REPORT CARD -->
+        <div class="mode-card">
+            <h2>Current Reading Report</h2>
+            <p>Generate professional lab report of latest sensor readings.</p>
+            <button id="btn-current-report" class="mode-btn blue-btn">
+                Generate Current Report
+            </button>
+        </div>
+
+        <!-- DATE RANGE REPORT CARD -->
+        <div class="mode-card">
+            <h2>Date Range Report</h2>
+
+            <p>Select date range to generate detailed lab report.</p>
+
+            <input type="date" id="from-date"
+                style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none;">
+
+            <input type="date" id="to-date"
+                style="width:100%; padding:10px; margin-bottom:20px; border-radius:6px; border:none;">
+
+            <button id="btn-range-report" class="mode-btn pink-btn">
+                Generate Custom Report
+            </button>
+        </div>
+
+    </div>
+
+</main>
+
+<script type="module" src="report.js"></script>
+
+</body>
+</html>

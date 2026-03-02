@@ -394,10 +394,7 @@ function fetchHistoricalAlerts() {
 // 8. INITIALIZATION
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Start listening to live data for the banner
-    listenToLiveData();
-    
-    // Fetch historical data for the alerts table
-    fetchHistoricalAlerts();
-});
+document.getElementById("btn-open-report-page")
+    .addEventListener("click", () => {
+        window.location.href = "report.html";
+    });
