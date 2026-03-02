@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Water Quality Monitoring</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Login Page Specific Styles */
+        .login-container {
+            min-height: calc(100vh - 100px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .login-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .login-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-accent);
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background: #e5677a;
+            transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .google-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .error-message {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .back-link {
+            margin-top: 25px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .back-link a {
+            color: var(--primary-accent);
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .user-details {
+            text-align: left;
+        }
+
+        .user-name {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .user-email {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-light);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        /* Signup specific styles */
+        .signup-toggle {
+            margin-top: 20px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .signup-toggle a {
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        #confirm-password-group,
+        #name-group {
+            display: none;
+        }
+    </style>
+</head>
+<body class="login-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="dashboard.html">Live Dashboard</a></li>
+                <li><a href="calibrations.html">Calibrations</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="ai.html">AI</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="login-container">
+        <div class="login-card">
+            <img src="assets/Logo.png" alt="Logo" class="login-logo">
+            <h1 class="login-title" id="page-title">Welcome Back</h1>
+            <p class="login-subtitle" id="page-subtitle">Sign in to access your water quality dashboard</p>
+            
+            <div class="error-message" id="error-message"></div>
+            
+            <!-- Logged in state -->
+            <div id="logged-in-content" style="display: none;">
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <div class="user-details">
+                        <div class="user-name" id="user-name">User Name</div>
+                        <div class="user-email" id="user-email">user@example.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logout-btn">Sign Out</button>
+            </div>
+            
+            <!-- Login form -->
+            <form class="login-form" id="login-form">
+                <!-- Name field - shown only in signup mode -->
+                <div class="form-group" id="name-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <!-- Confirm password field - shown only in signup mode -->
+                <div class="form-group" id="confirm-password-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
+                </div>
+                
+                <button type="submit" class="login-btn" id="login-btn">Sign In</button>
+            </form>
+            
+            <!-- Signup toggle link -->
+            <p class="signup-toggle" id="signup-toggle">
+                Don't have an account? <a href="#" id="signup-link">Sign Up</a>
+            </p>
+            
+            <!-- Signin toggle link (hidden by default) -->
+            <p class="signup-toggle" id="signin-toggle" style="display: none;">
+                Already have an account? <a href="#" id="signin-link">Sign In</a>
+            </p>
+            
+            <div class="divider"><span>or</span></div>
+            
+            <button class="google-btn" id="google-btn">
+                <img src="https://www.google.com/favicon.ico" alt="Google">
+                Continue with Google
+            </button>
+            
+            <p class="back-link">
+                <a href="index.html">← Back to Home</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAH_qoGe9siWiQ_6OJYvRXWF_T-8Jg2P2U",
+            authDomain: "wqiv1-7588d.firebaseapp.com",
+            databaseURL: "https://wqiv1-7588d-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "wqiv1-7588d",
+            storageBucket: "wqiv1-7588d.firebasestorage.app",
+            messagingSenderId: "1045198749186",
+            appId: "1:1045198749186:web:52657bc9ca7ce4aa36311b"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // DOM Elements
+        const loginForm = document.getElementById('login-form');
+        const loginBtn = document.getElementById('login-btn');
+        const googleBtn = document.getElementById('google-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const errorMessage = document.getElementById('error-message');
+        const loggedInContent = document.getElementById('logged-in-content');
+        const pageTitle = document.getElementById('page-title');
+        const pageSubtitle = document.getElementById('page-subtitle');
+        
+        // Signup toggle elements
+        const signupToggle = document.getElementById('signup-toggle');
+        const signinToggle = document.getElementById('signin-toggle');
+        const signupLink = document.getElementById('signup-link');
+        const signinLink = document.getElementById('signin-link');
+        const nameGroup = document.getElementById('name-group');
+        const confirmPasswordGroup = document.getElementById('confirm-password-group');
+        
+        // Signup mode state
+        let isSignupMode = false;
+
+        // Check for logout action from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('action') === 'logout') {
+            handleLogout();
+        }
+        
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showLoggedInState(user);
+            } else {
+                showLoginForm();
+            }
+        });
+
+        // Handle logout from URL parameter
+        async function handleLogout() {
+            try {
+                await signOut(auth);
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                // Remove the query parameter and show login form
+                window.history.replaceState({}, document.title, window.location.pathname);
+                showLoginForm();
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+        }
+
+        // Show logged in state
+        function showLoggedInState(user) {
+            loginForm.style.display = 'none';
+            document.querySelector('.divider').style.display = 'none';
+            googleBtn.style.display = 'none';
+            loggedInContent.style.display = 'block';
+            pageTitle.textContent = 'Already Signed In';
+            pageSubtitle.textContent = 'You are already logged in';
+            
+            document.getElementById('user-name').textContent = user.displayName || 'User';
+            document.getElementById('user-email').textContent = user.email;
+            document.getElementById('user-avatar').textContent = (user.displayName || user.email || 'U').charAt(0).toUpperCase();
+            
+            // Store auth state in localStorage
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', user.email);
+        }
+
+        // Show login form
+        function showLoginForm() {
+            loginForm.style.display = 'flex';
+            document.querySelector('.divider').style.display = 'flex';
+            googleBtn.style.display = 'flex';
+            loggedInContent.style.display = 'none';
+            pageTitle.textContent = 'Welcome Back';
+            pageSubtitle.textContent = 'Sign in to access your water quality dashboard';
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // Google Sign In
+        googleBtn.addEventListener('click', async () => {
+            googleBtn.disabled = true;
+            googleBtn.textContent = 'Signing in...';
+            
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                console.log('Google user:', result.user);
+                
+                // Store auth state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', result.user.email);
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                console.error('Google login error:', error);
+                showError(getErrorMessage(error.code));
+                googleBtn.disabled = false;
+                googleBtn.innerHTML = '<img src="https://www.google.com/favicon.ico" alt="Google"> Continue with Google';
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                showLoginForm();
+            } catch (error) {
+                console.error('Logout error:', error);
+                showError('Error signing out. Please try again.');
+            }
+        });
+
+        // Get error message from error code
+        function getErrorMessage(errorCode) {
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    return 'Invalid email address format.';
+                case 'auth/user-disabled':
+                    return 'This account has been disabled.';
+                case 'auth/user-not-found':
+                    return 'No account found with this email.';
+                case 'auth/wrong-password':
+                    return 'Incorrect password.';
+                case 'auth/invalid-credential':
+                    return 'Invalid email or password.';
+                case 'auth/too-many-requests':
+                    return 'Too many failed attempts. Please try again later.';
+                case 'auth/popup-closed-by-user':
+                    return 'Sign in was cancelled. Please try again.';
+                case 'auth/email-already-in-use':
+                    return 'An account with this email already exists.';
+                case 'auth/weak-password':
+                    return 'Password should be at least 6 characters.';
+                default:
+                    return 'An error occurred. Please try again.';
+            }
+        }
+
+        // Toggle between login and signup modes
+        function toggleSignupMode() {
+            isSignupMode = !isSignupMode;
+            
+            if (isSignupMode) {
+                // Show signup mode
+                nameGroup.style.display = 'block';
+                confirmPasswordGroup.style.display = 'block';
+                signupToggle.style.display = 'none';
+                signinToggle.style.display = 'block';
+                pageTitle.textContent = 'Create Account';
+                pageSubtitle.textContent = 'Sign up to get started';
+                loginBtn.textContent = 'Sign Up';
+            } else {
+                // Show login mode
+                nameGroup.style.display = 'none';
+                confirmPasswordGroup.style.display = 'none';
+                signupToggle.style.display = 'block';
+                signinToggle.style.display = 'none';
+                pageTitle.textContent = 'Welcome Back';
+                pageSubtitle.textContent = 'Sign in to access your water quality dashboard';
+                loginBtn.textContent = 'Sign In';
+            }
+        }
+
+        // Signup link click handler
+        signupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSignupMode();
+        });
+
+        // Signin link click handler
+        signinLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSignupMode();
+        });
+
+        // Modified form submission handler
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (isSignupMode) {
+                // Signup mode
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const name = document.getElementById('name').value;
+                
+                // Validate passwords match
+                if (password !== confirmPassword) {
+                    showError('Passwords do not match.');
+                    return;
+                }
+                
+                // Validate password length
+                if (password.length < 6) {
+                    showError('Password should be at least 6 characters.');
+                    return;
+                }
+                
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Creating account...';
+                
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    console.log('User signed up:', userCredential.user);
+                    
+                    // Store auth state
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', userCredential.user.email);
+                    
+                    // Show success and redirect
+                    alert('Account created successfully!');
+                    window.location.href = 'dashboard.html';
+                } catch (error) {
+                    console.error('Signup error:', error);
+                    showError(getErrorMessage(error.code));
+                } finally {
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Sign Up';
+                }
+            } else {
+                // Login mode
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Signing in...';
+                
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log('User logged in:', userCredential.user);
+                    
+                    // Store auth state
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userEmail', userCredential.user.email);
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showError(getErrorMessage(error.code));
+                } finally {
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Sign In';
+                }
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                    <span class="footer-logo-text">Water Quality Monitoring</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <span class="footer-contact-icon">📞</span>
+                    <span class="footer-contact-name">Raj Shinde:</span>
+                    <span class="footer-contact-phone">9767975375</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
