@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mode.css"> <!-- reuse mode styling -->
+    <link rel="stylesheet" href="mode.css">
 </head>
 <body>
 
@@ -17,19 +17,27 @@
 
     <div class="nav-right">
         <ul class="nav-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="dashboard.html">Live Dashboard</a></li>
-            <li><a href="calibrations.html">Calibrations</a></li>
-            <li><a href="alerts.html">Alerts</a></li>
-            <li><a href="ai.html">AI</a></li>
-            <li><a href="report.html" class="active">Download Report</a></li>
+            <li><a href="about.html" data-translate="about_us">About Us</a></li>
+            <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+            <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+            <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+            <li><a href="ai.html" data-translate="ai">AI</a></li>
+            <li><a href="report.html" class="active" data-translate="download_report">Download Report</a></li>
         </ul>
+        
+        <div class="lang-switch">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी</option>
+                <option value="mr">मराठी</option>
+            </select>
+        </div>
     </div>
 </nav>
 
 <main class="container mode-container">
 
-    <h1 class="page-title" style="text-align:center;">
+    <h1 class="page-title" style="text-align:center;" data-translate="generate_water_quality_report">
         GENERATE WATER QUALITY REPORT
     </h1>
 
@@ -37,16 +45,16 @@
 
         <!-- CURRENT REPORT CARD -->
         <div class="mode-card">
-            <h2>Current Reading Report</h2>
+            <h2 data-translate="current_reading_report">Current Reading Report</h2>
             <p>Generate professional lab report of latest sensor readings.</p>
-            <button id="btn-current-report" class="mode-btn blue-btn">
+            <button id="btn-current-report" class="mode-btn blue-btn" data-translate="generate_current_report">
                 Generate Current Report
             </button>
         </div>
 
         <!-- DATE RANGE REPORT CARD -->
         <div class="mode-card">
-            <h2>Date Range Report</h2>
+            <h2 data-translate="date_range_report">Date Range Report</h2>
 
             <p>Select date range to generate detailed lab report.</p>
 
@@ -56,7 +64,7 @@
             <input type="date" id="to-date"
                 style="width:100%; padding:10px; margin-bottom:20px; border-radius:6px; border:none;">
 
-            <button id="btn-range-report" class="mode-btn pink-btn">
+            <button id="btn-range-report" class="mode-btn pink-btn" data-translate="generate_custom_report">
                 Generate Custom Report
             </button>
         </div>
@@ -66,6 +74,7 @@
 </main>
 
 <script type="module" src="report.js"></script>
+<script src="language.js"></script>
 
 </body>
 </html>

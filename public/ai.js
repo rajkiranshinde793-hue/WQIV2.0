@@ -132,11 +132,36 @@ async function fetchWaterQualityData() {
 // ==========================================
 
 /**
+ * Get current selected language
+ * @returns {string} - Current language code
+ */
+function getCurrentLanguage() {
+    return localStorage.getItem('selectedLanguage') || 'en';
+}
+
+/**
+ * Get language name for API prompt
+ * @param {string} langCode - Language code
+ * @returns {string} - Language name
+ */
+function getLanguageName(langCode) {
+    const langNames = {
+        'en': 'English',
+        'hi': 'Hindi (हिन्दी)',
+        'mr': 'Marathi (मराठी)'
+    };
+    return langNames[langCode] || 'English';
+}
+
+/**
  * Build the system prompt with current data and thresholds
  * @param {object} data - Water quality sensor data
  * @returns {string} - Complete system prompt
  */
 function buildSystemPrompt(data) {
+    const currentLang = getCurrentLanguage();
+    const langName = getLanguageName(currentLang);
+    
     // Format the data for the prompt
     let dataStr = "CURRENT WATER QUALITY DATA:\n";
     dataStr += "─────────────────────────\n";
@@ -162,6 +187,11 @@ function buildSystemPrompt(data) {
     dataStr += `TSS: max ${thresholds.tss.max} ppm\n`;
     dataStr += `Salinity: max ${thresholds.salinity.max} ppm\n`;
     dataStr += `Heavy Metals: max ${thresholds.metals.max} g/cm³\n`;
+    
+    // Add language instruction
+    if (currentLang !== 'en') {
+        dataStr += `\nIMPORTANT: You MUST respond in ${langName} language. All your responses should be in ${langName}.\n`;
+    }
     
     return dataStr;
 }

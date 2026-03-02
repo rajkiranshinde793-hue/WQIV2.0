@@ -287,12 +287,20 @@
         
         <div class="nav-right">
             <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="dashboard.html">Live Dashboard</a></li>
-                <li><a href="calibrations.html">Calibrations</a></li>
-                <li><a href="alerts.html">Alerts</a></li>
-                <li><a href="ai.html">AI</a></li>
+                <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
             </ul>
+            
+            <div class="lang-switch">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
             
             <div class="hamburger">
                 <span></span><span></span><span></span>
@@ -650,29 +658,30 @@
     </script>
 
     <script src="script.js"></script>
+    <script src="language.js"></script>
 
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
                 <a href="index.html" class="footer-logo">
                     <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
-                    <span class="footer-logo-text">Water Quality Monitoring</span>
+                    <span class="footer-logo-text" data-translate="water_quality_monitoring">Water Quality Monitoring</span>
                 </a>
                 <ul class="footer-links">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                    <li><a href="privacy.html" data-translate="privacy_policy">Privacy Policy</a></li>
                 </ul>
             </div>
             <div class="footer-right">
                 <div class="footer-contact">
                     <span class="footer-contact-icon">📞</span>
-                    <span class="footer-contact-name">Raj Shinde:</span>
+                    <span class="footer-contact-name" data-translate="raj_shinde">Raj Shinde:</span>
                     <span class="footer-contact-phone">9767975375</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+            <p class="footer-copyright" data-translate="copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
         </div>
     </footer>
 </body>

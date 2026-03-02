@@ -108,6 +108,37 @@ body.home-page::before {
 }
 
 /* =========================================
+   LANGUAGE SWITCHER
+========================================= */
+.lang-switch {
+    display: flex;
+    align-items: center;
+}
+
+.lang-switch select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.lang-switch select:hover {
+    border-color: var(--primary-accent);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.lang-switch select option {
+    background: var(--bg-main);
+    color: var(--text-light);
+}
+
+/* =========================================
    HAMBURGER MENU ANIMATION (Global)
 ========================================= */
 .hamburger {
