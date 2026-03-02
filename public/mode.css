@@ -22,6 +22,7 @@
     text-align: center; margin-top: 40px; font-family: var(--font-heading); 
     font-size: 1.3rem; color: #f1c40f; padding: 15px; background: rgba(241, 196, 15, 0.1);
     border-radius: 8px; border: 1px solid #f1c40f; max-width: 600px; margin-left: auto; margin-right: auto;
+<<<<<<< HEAD
 }
 /* ===============================
    MOBILE RESPONSIVE FIX
@@ -84,4 +85,6 @@
     .hamburger {
         display: block;
     }
+=======
+>>>>>>> 146104e9905ca4d1d5bf411d50c4923c4a4da6a3
 }

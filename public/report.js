@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-import { getDatabase, ref, get, query, orderByKey } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+import { getDatabase, ref, get, query, orderByKey, limitToLast } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 import { jsPDF } from "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/+esm";
 
 /* ===============================
@@ -19,128 +19,124 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 /* ===============================
+   HELPER: TIMESTAMP CONVERTER
+=============================== */
+// The ESP32 saves time in seconds. JavaScript uses milliseconds. 
+// This function safely converts the ESP32 time so the math works!
+function getValidTimestampMs(ts) {
+    if (!ts) return Date.now();
+    return ts > 9999999999 ? ts : ts * 1000;
+}
+
+/* ===============================
    BUTTON EVENTS
 =============================== */
 
-document.getElementById("btn-current-report")
-    .addEventListener("click", () => {
-        generateCurrentReport();
-    });
+document.getElementById("btn-current-report").addEventListener("click", () => {
+    generateCurrentReport();
+});
 
-document.getElementById("btn-range-report")
-    .addEventListener("click", () => {
-        const fromDate = document.getElementById("from-date").value;
-        const toDate = document.getElementById("to-date").value;
+document.getElementById("btn-range-report").addEventListener("click", () => {
+    const fromDate = document.getElementById("from-date").value;
+    const toDate = document.getElementById("to-date").value;
 
-        if (!fromDate || !toDate) {
-            alert("Please select both dates.");
+    if (!fromDate || !toDate) {
+        alert("Please select both dates.");
+        return;
+    }
+
+    const from = new Date(fromDate).getTime();
+    // Add 24 hours (86399999 ms) to include the entire "to" day until 11:59 PM
+    const to = new Date(toDate).getTime() + 86399999; 
+
+    generateCustomReport(from, to);
+});
+
+
+/* ===============================
+   CURRENT READING REPORT (FIXED)
+=============================== */
+async function generateCurrentReport() {
+    const btn = document.getElementById("btn-current-report");
+    btn.innerText = "Fetching...";
+    
+    try {
+        const historyRef = ref(database, 'sensor_history');
+        // Efficient query: Tell Firebase to ONLY send the absolute newest record
+        const historyQuery = query(historyRef, orderByKey(), limitToLast(1));
+
+        const snapshot = await get(historyQuery);
+
+        if (!snapshot.exists()) {
+            alert("No data found in database.");
             return;
         }
 
-        const from = new Date(fromDate).getTime();
-        const to = new Date(toDate).getTime();
+        let latestReading = null;
+        snapshot.forEach(child => {
+            latestReading = child.val();
+        });
 
-        generateCustomReport(from, to);
-    });
-
-/* ===============================
-   LAST X DAYS REPORT
-=============================== */
-
-async function generateReport(days) {
-
-    const historyRef = ref(database, 'sensor_history');
-    const historyQuery = query(historyRef, orderByKey());
-
-    const snapshot = await get(historyQuery);
-
-    if (!snapshot.exists()) {
-        alert("No data found.");
-        return;
-    }
-
-    let dataArray = [];
-
-    snapshot.forEach(child => {
-        const data = child.val();
-        const timestamp = data.timestamp || child.key;
-
-        const diffDays = (Date.now() - Number(timestamp)) / (1000 * 60 * 60 * 24);
-        if (diffDays <= days) {
-            dataArray.push(data);
+        if (latestReading) {
+            generateProfessionalPDF([latestReading], "Current Reading Report");
         }
-    });
-
-    generateProfessionalPDF(dataArray, `Last ${days} Days`);
+    } catch (error) {
+        console.error(error);
+        alert("Error fetching report data.");
+    } finally {
+        btn.innerText = "Generate Current Report";
+    }
 }
 
 /* ===============================
-   CUSTOM DATE REPORT
+   CUSTOM DATE REPORT (FIXED)
 =============================== */
-async function generateCurrentReport() {
-
-    const historyRef = ref(database, 'sensor_history');
-    const historyQuery = query(historyRef, orderByKey());
-
-    const snapshot = await get(historyQuery);
-
-    if (!snapshot.exists()) {
-        alert("No data found.");
-        return;
-    }
-
-    let latestReading = null;
-
-    snapshot.forEach(child => {
-        latestReading = child.val(); // Firebase push keys already chronological
-    });
-
-    if (!latestReading) {
-        alert("No latest reading found.");
-        return;
-    }
-
-    generateProfessionalPDF([latestReading], "Current Reading Report");
-}
-
 async function generateCustomReport(from, to) {
+    const btn = document.getElementById("btn-range-report");
+    btn.innerText = "Fetching...";
 
-    const historyRef = ref(database, 'sensor_history');
-    const historyQuery = query(historyRef, orderByKey());
+    try {
+        const historyRef = ref(database, 'sensor_history');
+        const historyQuery = query(historyRef, orderByKey());
+        const snapshot = await get(historyQuery);
 
-    const snapshot = await get(historyQuery);
-
-    if (!snapshot.exists()) {
-        alert("No data found.");
-        return;
-    }
-
-    let filteredData = [];
-
-    snapshot.forEach(child => {
-
-        const data = child.val();
-        const timestamp = Number(data.timestamp || child.key);
-
-        if (timestamp >= from && timestamp <= to) {
-            filteredData.push(data);
+        if (!snapshot.exists()) {
+            alert("No data found in database.");
+            return;
         }
-    });
 
-    if (filteredData.length === 0) {
-        alert("No data found in selected date range.");
-        return;
+        let filteredData = [];
+
+        snapshot.forEach(child => {
+            const data = child.val();
+            if (data.timestamp) {
+                // Convert to milliseconds before checking the date range!
+                const tsMs = getValidTimestampMs(data.timestamp);
+                
+                if (tsMs >= from && tsMs <= to) {
+                    filteredData.push(data);
+                }
+            }
+        });
+
+        if (filteredData.length === 0) {
+            alert("No readings found in this specific date range.");
+        } else {
+            generateProfessionalPDF(filteredData, "Custom Date Range Report");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Error fetching custom range data.");
+    } finally {
+        btn.innerText = "Generate Custom Report";
     }
-
-    generateProfessionalPDF(filteredData, "Custom Date Range Report");
 }
+
 
 /* ===============================
    PROFESSIONAL PDF GENERATOR
 =============================== */
-
 function generateProfessionalPDF(dataArray, mode) {
-
     const doc = new jsPDF("p", "mm", "a4");
 
     const reportNo = "WQ-" + new Date().getTime();
@@ -150,9 +146,7 @@ function generateProfessionalPDF(dataArray, mode) {
     let pageNumber = 1;
     let sampleId = 1;
 
-    /* ===============================
-       HEADER BAND
-    =============================== */
+    // Header Band
     doc.setFillColor(25, 60, 120);
     doc.rect(0, 0, 210, 28, "F");
 
@@ -170,16 +164,12 @@ function generateProfessionalPDF(dataArray, mode) {
     doc.text(`Generated On: ${today}`, 120, y);
 
     y += 15;
-
     doc.setDrawColor(180);
     doc.line(10, y, 200, y);
     y += 10;
 
-    /* ===============================
-       SAMPLE LOOP
-    =============================== */
+    // Sample Loop
     dataArray.forEach(data => {
-
         if (y > 240) {
             addFooter();
             doc.addPage();
@@ -187,8 +177,9 @@ function generateProfessionalPDF(dataArray, mode) {
             y = 20;
         }
 
-        const timestamp = data.timestamp || Date.now();
-        const dateObj = new Date(Number(timestamp));
+        // Fix: Use our new converter function for the PDF output
+        const tsMs = getValidTimestampMs(data.timestamp);
+        const dateObj = new Date(tsMs);
 
         const date = dateObj.toLocaleDateString();
         const time = dateObj.toLocaleTimeString();
@@ -230,17 +221,11 @@ function generateProfessionalPDF(dataArray, mode) {
         ];
 
         parameters.forEach(p => {
-
             let status = "PASS";
 
-            if (p.name === "pH" && (p.value < 6.5 || p.value > 8.5))
-                status = "FAIL";
-
-            if (p.name === "TDS" && p.value > 500)
-                status = "FAIL";
-
-            if (p.name === "Hardness" && p.value > 250)
-                status = "WARNING";
+            if (p.name === "pH" && (p.value < 6.5 || p.value > 8.5)) status = "FAIL";
+            if (p.name === "TDS" && p.value > 500) status = "FAIL";
+            if (p.name === "Hardness" && p.value > 250) status = "WARNING";
 
             doc.rect(14, y - 5, 182, 8);
 
@@ -263,9 +248,7 @@ function generateProfessionalPDF(dataArray, mode) {
         sampleId++;
     });
 
-    /* ===============================
-       SUMMARY SECTION
-    =============================== */
+    // Summary Section
     if (y > 230) {
         addFooter();
         doc.addPage();
@@ -280,14 +263,11 @@ function generateProfessionalPDF(dataArray, mode) {
     doc.text("Summary of Results", 18, y + 8);
 
     doc.setFont("helvetica", "normal");
-    doc.text("Overall Water Quality: Treatment Recommended", 18, y + 16);
-    doc.text("Risk Level: Moderate", 18, y + 22);
-
+    doc.text("Overall Water Quality: Evaluated per sample limits above.", 18, y + 16);
+    
     y += 35;
 
-    /* ===============================
-       DISCLAIMER
-    =============================== */
+    // Disclaimer
     doc.setFontSize(8);
     doc.setTextColor(80);
 
@@ -300,12 +280,8 @@ function generateProfessionalPDF(dataArray, mode) {
     doc.text(splitText, 15, y);
 
     addFooter();
-
     doc.save("Professional_Water_Quality_Report.pdf");
 
-    /* ===============================
-       FOOTER FUNCTION
-    =============================== */
     function addFooter() {
         doc.setFontSize(8);
         doc.setTextColor(100);

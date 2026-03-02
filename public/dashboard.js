@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
     onValue(modeListenRef, (snapshot) => {
         const mode = snapshot.val();
         if (mode === 'one-time') {
-            badgeEl.innerText = "Mode: One-Time (Sleeping)";
+            badgeEl.innerText = "Mode: One-Time";
             badgeEl.style.color = "#FE7693";
             floatBtn.style.display = "inline-block";
         } else {
@@ -512,9 +512,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+   // ... (keep the onValue(modeListenRef, ...) code above this)
+
     floatBtn.addEventListener('click', () => {
+        // 1. Disable the button so the user can't spam it while ESP32 is working
+        floatBtn.disabled = true;
+        floatBtn.style.pointerEvents = 'none';
+        floatBtn.style.opacity = '0.8';
+
+        // 2. Send the trigger to Firebase
         set(triggerWriteRef, true);
-        floatBtn.innerText = "Sent!";
-        setTimeout(() => { floatBtn.innerText = "Take Reading"; }, 2000);
+        
+        // 3. Start the 10-second countdown
+        let count = 10;
+        floatBtn.innerText = `Reading... ${count}s`;
+        
+        const countdownInterval = setInterval(() => {
+            count--;
+            
+            if (count > 0) {
+                // Update the timer text
+                floatBtn.innerText = `Reading... ${count}s`;
+            } else {
+                // 4. Timer is finished! Show Success Message
+                clearInterval(countdownInterval);
+                floatBtn.innerText = "Updated! ";
+                floatBtn.style.backgroundColor = "#2ecc71"; // Turn it a nice success green
+                
+                // 5. Reset the button back to normal after 3 seconds
+                setTimeout(() => {
+                    floatBtn.innerText = "Take Reading";
+                    floatBtn.style.backgroundColor = ""; // Remove inline green color
+                    floatBtn.disabled = false;
+                    floatBtn.style.pointerEvents = 'auto';
+                    floatBtn.style.opacity = '1';
+                }, 3000);
+            }
+        }, 1000); // 1000 milliseconds = 1 second
     });
-});
+
+}); // <--- Make sure this final closing bracket stays at the very bottom!

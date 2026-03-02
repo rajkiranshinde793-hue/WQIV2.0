@@ -394,7 +394,18 @@ function fetchHistoricalAlerts() {
 // 8. INITIALIZATION
 // ==========================================
 
-document.getElementById("btn-open-report-page")
-    .addEventListener("click", () => {
-        window.location.href = "report.html";
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Start fetching the live banner data
+    listenToLiveData();
+    
+    // 2. Start fetching the historical logs for the table
+    fetchHistoricalAlerts();
+
+    // 3. Setup the report button
+    const reportBtn = document.getElementById("btn-open-report-page");
+    if (reportBtn) {
+        reportBtn.addEventListener("click", () => {
+            window.location.href = "report.html";
+        });
+    }
+});
