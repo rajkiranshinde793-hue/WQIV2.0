@@ -35,8 +35,17 @@
     </nav>
 
     <main class="container dashboard-container">
-        <h1 class="page-title">LIVE DASHBOARD</h1>
-        
+
+<div class="dashboard-header-wrapper">
+            <h1 class="page-title" style="margin-bottom: 0;">LIVE DASHBOARD</h1>
+            
+            <div class="mode-badge-container">
+                <span id="active-mode-badge" class="badge-text">Mode: Checking...</span>
+                <button id="floating-take-reading" class="custom-graph-btn btn-small" style="display: none;">Take Reading</button>
+            </div>
+        </div>
+
+
         <div class="dashboard-grid">
             <div class="sensor-card full-width" data-param="quality">
                 <div class="card-header">

@@ -1,0 +1,25 @@
+.mode-container { padding-top: 80px; padding-bottom: 80px; }
+.mode-cards-wrapper { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
+.mode-card {
+    background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; padding: 40px 30px; width: 350px; text-align: center;
+    transition: transform 0.3s;
+}
+.mode-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.5); }
+.mode-card h2 { font-family: var(--font-heading); color: var(--text-light); margin-bottom: 15px; }
+.mode-card p { font-family: var(--font-body); color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; line-height: 1.5; }
+.mode-btn { 
+    font-family: var(--font-heading); font-weight: bold; font-size: 1rem;
+    padding: 12px 25px; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; color: white;
+}
+.blue-btn { background-color: #5A8DF8; }
+.blue-btn:hover { background-color: #4371d6; }
+.pink-btn { background-color: #FE7693; }
+.pink-btn:hover { background-color: #d65a75; }
+.start-btn { background-color: #2ecc71; margin-top: 20px; font-size: 1.2rem; padding: 15px 40px; }
+.start-btn:hover { background-color: #27ae60; }
+.status-message {
+    text-align: center; margin-top: 40px; font-family: var(--font-heading); 
+    font-size: 1.3rem; color: #f1c40f; padding: 15px; background: rgba(241, 196, 15, 0.1);
+    border-radius: 8px; border: 1px solid #f1c40f; max-width: 600px; margin-left: auto; margin-right: auto;
+}

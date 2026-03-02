@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-import { getDatabase, ref, onValue, query, orderByKey, limitToLast } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
-
+import { getDatabase, ref, onValue, push, query, limitToLast, orderByKey, set } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 document.addEventListener("DOMContentLoaded", () => {
     // Global settings
     Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
@@ -491,4 +490,31 @@ document.addEventListener("DOMContentLoaded", () => {
         updateIndividualChart();
         updateCustomChart();
     };
+
+    // ============================================
+    // DASHBOARD MODE BADGE LISTENER
+    // ============================================
+    const badgeEl = document.getElementById('active-mode-badge');
+    const floatBtn = document.getElementById('floating-take-reading');
+    const modeListenRef = ref(database, 'settings/monitoring_control/mode');
+    const triggerWriteRef = ref(database, 'settings/monitoring_control/trigger_reading');
+
+    onValue(modeListenRef, (snapshot) => {
+        const mode = snapshot.val();
+        if (mode === 'one-time') {
+            badgeEl.innerText = "Mode: One-Time (Sleeping)";
+            badgeEl.style.color = "#FE7693";
+            floatBtn.style.display = "inline-block";
+        } else {
+            badgeEl.innerText = "Mode: Continuous (24/7)";
+            badgeEl.style.color = "#5A8DF8";
+            floatBtn.style.display = "none";
+        }
+    });
+
+    floatBtn.addEventListener('click', () => {
+        set(triggerWriteRef, true);
+        floatBtn.innerText = "Sent!";
+        setTimeout(() => { floatBtn.innerText = "Take Reading"; }, 2000);
+    });
 });

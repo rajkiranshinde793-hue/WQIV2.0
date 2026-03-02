@@ -403,6 +403,51 @@ canvas {
     box-shadow: 0 8px 25px rgba(90, 141, 248, 0.3);
 }
 
+/* --- RESPONSIVE DASHBOARD HEADER --- */
+.dashboard-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.mode-badge-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.badge-text {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn-small {
+    margin-bottom: 0; /* overrides the default custom-graph-btn margin */
+    padding: 6px 15px;
+    font-size: 0.9rem;
+}
+
+/* Mobile Adjustments for Header */
+@media (max-width: 900px) {
+    .dashboard-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .mode-badge-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
 /* =========================================
    MOBILE RESPONSIVENESS (PHONES)
 ========================================= */

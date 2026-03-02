@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Mode - Water Quality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mode.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="dashboard.html">Live Dashboard</a></li>
+                <li><a href="calibrations.html">Calibrations</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="ai.html">AI</a></li>
+                <li><a href="mode.html" class="active">Select Mode</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mode-container">
+        <h1 class="page-title" style="text-align: center;">SELECT MONITORING MODE</h1>
+        
+        <div class="mode-cards-wrapper">
+            <div class="mode-card" id="card-continuous">
+                <h2>Continuous Mode</h2>
+                <p>System runs 24/7. Updates live dashboard instantly and logs history every 5 minutes.</p>
+                <button id="btn-continuous" class="mode-btn blue-btn">Select Continuous</button>
+            </div>
+
+            <div class="mode-card" id="card-onetime">
+                <h2>One-Time Mode</h2>
+                <p>System sleeps to save power. Only takes a reading when you manually request it.</p>
+                <button id="btn-onetime" class="mode-btn pink-btn">Select One-Time</button>
+            </div>
+        </div>
+
+        <div id="status-message-area" class="status-message" style="display: none;"></div>
+        
+        <div style="text-align: center;">
+            <button id="btn-start-monitoring" class="mode-btn start-btn" style="display: none;">Start Monitoring Now</button>
+        </div>
+    </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyAH_qoGe9siWiQ_6OJYvRXWF_T-8Jg2P2U",
+        authDomain: "wqiv1-7588d.firebaseapp.com",
+        databaseURL: "https://wqiv1-7588d-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "wqiv1-7588d",
+        storageBucket: "wqiv1-7588d.firebasestorage.app",
+        messagingSenderId: "1045198749186",
+        appId: "1:1045198749186:web:52657bc9ca7ce4aa36311b"
+      };
+      const app = initializeApp(firebaseConfig);
+    </script>
+    <script type="module" src="mode.js"></script>
+</body>
+</html>
