@@ -241,7 +241,11 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(90, 141, 248, 0.4);
 }
+<<<<<<< HEAD
 
+=======
+td:nth-child(6):contains('Info') { color: #5A8DF8; font-weight: bold; }
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 /* =========================================
    MOBILE RESPONSIVENESS
 ========================================= */

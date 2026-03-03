@@ -337,6 +337,7 @@ function listenToLiveData() {
 }
 
 /**
+<<<<<<< HEAD
  * Fetch historical sensor data and generate alerts
  */
 function fetchHistoricalAlerts() {
@@ -348,12 +349,20 @@ function fetchHistoricalAlerts() {
         orderByKey(),
         limitToLast(50)
     );
+=======
+ * Fetch historical sensor data and generate alerts & maintenance logs
+ */
+function fetchHistoricalAlerts() {
+    const historyRef = ref(database, 'sensor_history');
+    const historyQuery = query(historyRef, orderByKey(), limitToLast(50));
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     
     onValue(historyQuery, (snapshot) => {
         const data = snapshot.val();
         const alertHistory = [];
         
         if (data) {
+<<<<<<< HEAD
             // Use forEach to iterate (maintains chronological order with Firebase push keys)
             snapshot.forEach((childSnapshot) => {
                 const reading = childSnapshot.val();
@@ -378,6 +387,37 @@ function fetchHistoricalAlerts() {
                     };
                     
                     alertHistory.push(alert);
+=======
+            snapshot.forEach((childSnapshot) => {
+                const reading = childSnapshot.val();
+                const timestamp = reading.timestamp || childSnapshot.key;
+                
+                // --- NEW: Check if this is a Calibration Log ---
+                if (reading.is_calibration) {
+                    alertHistory.push({
+                        date: formatDate(timestamp),
+                        time: formatTime(timestamp),
+                        type: '🛠️ Maintenance',
+                        message: reading.cal_message,
+                        risk: 'Info'
+                    });
+                } 
+                // --- Normal Sensor Reading Check ---
+                else {
+                    const violations = checkForAlerts(reading);
+                    if (violations.length > 0) {
+                        const criticalViolation = violations.find(v => v.status === 'danger') || violations[0];
+                        const risk = criticalViolation.status === 'danger' ? 'High' : 'Warning';
+                        
+                        alertHistory.push({
+                            date: formatDate(timestamp),
+                            time: formatTime(timestamp),
+                            type: 'Water Quality',
+                            message: criticalViolation.message,
+                            risk: risk
+                        });
+                    }
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
                 }
             });
         }

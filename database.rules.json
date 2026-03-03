@@ -4,6 +4,13 @@
     ".write": true,
     "sensor_history": {
       ".indexOn": ["timestamp"]
+<<<<<<< HEAD
+=======
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null" 
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     }
 
   }

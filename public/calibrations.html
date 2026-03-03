@@ -21,11 +21,19 @@
         
         <div class="nav-right">
             <ul class="nav-links">
+<<<<<<< HEAD
                 <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
                 <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
                 <li><a href="ai.html" data-translate="ai">AI</a></li>
                 <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
                 <li><a href="about.html" class="active" data-translate="about_us">About Us</a></li>
+=======
+                <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="calibrations.html" class="active" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
             </ul>
             
             <div class="lang-switch">
@@ -81,13 +89,20 @@
             
             <div class="left-panel">
                 <div class="calib-card alert-box">
+<<<<<<< HEAD
                     <span class="card-label" data-translate="alerts">ALERTS</span>
                     <div class="alert-message" id="calibration-alert">
                         {{ TURBIDITY SENSOR NEEDS Calibrations }}
+=======
+                    <span class="card-label">ALERTS</span>
+                    <div class="alert-message" id="calibration-alert">
+                        Checking Status...
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
                     </div>
                 </div>
 
                 <div class="button-row">
+<<<<<<< HEAD
                     <button class="calib-btn" id="btn-ph">Calibrate Ph<br>Sensor</button>
                     <button class="calib-btn" id="btn-tds">Calibrate TDS<br>Sensor</button>
                     <button class="calib-btn" id="btn-turbidity">Calibrate<br>Turbidity Sensor</button>
@@ -102,6 +117,81 @@
             </div>
 
         </div>
+=======
+                    <button class="calib-btn" id="btn-ph">Calibrate pH<br>Sensor</button>
+                    <button class="calib-btn" id="btn-tds">Calibrate TDS<br>Sensor</button>
+                    <button class="calib-btn" id="btn-turbidity">Calibrate<br>Turbidity</button>
+                </div>
+            </div>
+
+            <div class="calib-card info-box" id="wizard-container">
+                <span class="card-label">CALIBRATION WIZARD</span>
+                
+                <div style="text-align: right; font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 10px;">
+                    Last Calibrated: <span id="last-cal-date" style="color: white; font-weight: bold;">Checking...</span>
+                </div>
+                
+                <div id="expiry-warning" style="display: none; background: rgba(231, 76, 60, 0.2); color: #e74c3c; padding: 10px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #e74c3c; text-align: center; font-weight: bold; font-size: 0.9rem;">
+                    ⚠️ Calibration is older than 30 days. Recalibration recommended.
+                </div>
+
+                <div class="info-content" id="wizard-display" style="margin-top: 20px;">
+                    Select a sensor to begin the secure, interactive calibration sequence.
+                </div>
+
+                <button id="btn-factory-reset" class="calib-btn" style="margin-top: 30px; width: 100%; border-color: rgba(231, 76, 60, 0.5); color: #e74c3c; padding: 15px;">
+                    ⚠️ Factory Reset EEPROM
+                </button>
+            </div>
+
+        </div>
+
+        <h2 class="page-title" style="margin-top: 60px; font-size: 2rem;">Hardware & Cloud Settings</h2>
+        
+        <div class="hw-settings-grid">
+            <div class="calib-card">
+                <span class="card-label">BATTERY DIAGNOSTICS</span>
+                <div class="hw-content">
+                    <div class="stat-row">
+                        <span class="stat-label">State of Charge (SOC):</span>
+                        <span class="stat-value" id="bat-soc">--%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Voltage:</span>
+                        <span class="stat-value" id="bat-volt">--V</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Temperature:</span>
+                        <span class="stat-value" id="bat-temp">--°C</span>
+                    </div>
+                    <div class="stat-row" style="border-bottom: none;">
+                        <span class="stat-label">Health:</span>
+                        <span class="stat-value" id="bat-health">Checking...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calib-card">
+                <span class="card-label">TWILIO SMS SETTINGS</span>
+                <div class="hw-content">
+                    <div class="input-row">
+                        <label>Target Phone No:</label>
+                        <input type="text" id="tw-phone" class="cal-input" placeholder="+91...">
+                    </div>
+                    <div class="input-row">
+                        <label>Danger Interval (hr):</label>
+                        <input type="number" id="tw-danger" class="cal-input" placeholder="1">
+                    </div>
+                    <div class="input-row">
+                        <label>Safe Interval (hr):</label>
+                        <input type="number" id="tw-safe" class="cal-input" placeholder="4">
+                    </div>
+                    <button id="btn-save-twilio" class="calib-btn blue-btn" style="width: 100%; margin-top: 15px; padding: 12px;">Save Cloud Settings</button>
+                </div>
+            </div>
+        </div>
+
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     </main>
 
     <!-- Firebase SDK -->
@@ -129,7 +219,11 @@
     <script src="script.js"></script>
     <script src="auth.js"></script>
     <script src="language.js"></script>
+<<<<<<< HEAD
     <script src="calibrations.js"></script>
+=======
+    <script type="module" src="calibrations.js"></script>
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 
     <footer class="footer">
         <div class="footer-content">

@@ -197,6 +197,72 @@
     opacity: 1;
 }
 
+<<<<<<< HEAD
+=======
+/* --- HARDWARE & SETTINGS GRID --- */
+.hw-settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.hw-content {
+    margin-top: 40px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-family: var(--font-body);
+    opacity: 0.8;
+}
+
+.stat-value {
+    color: var(--text-light);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-row label {
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.cal-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    padding: 10px 15px;
+    border-radius: 6px;
+    width: 160px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 1rem;
+}
+
+.cal-input:focus {
+    border-color: var(--primary-accent);
+}
+
+>>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 /* =========================================
    MOBILE RESPONSIVENESS
 ========================================= */
