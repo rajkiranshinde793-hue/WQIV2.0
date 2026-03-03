@@ -3,11 +3,7 @@
 ========================================= */
 :root {
     --primary-accent: #FE7693; 
-<<<<<<< HEAD
     --text-light: #e2d9d9;     
-=======
-    --text-light: #F2F2F2;     
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     --bg-main: #060619; 
     --logo-blue: #5A8DF8; 
     
@@ -202,22 +198,14 @@ body.home-page::before {
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
-<<<<<<< HEAD
     margin-top: -10vh; 
 }
-=======
-    gap: 25px;
-    margin-top: -10vh; 
-}
-
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 .main-title {
     font-family: var(--font-heading);
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.5px;
-<<<<<<< HEAD
     margin-bottom: 6px;   /* small space */
 }
 
@@ -250,8 +238,6 @@ body.home-page::before {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-=======
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 }
 
 .hero-btn {

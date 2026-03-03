@@ -1,4 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // ============================================
+    // AUTO-ACTIVE NAVBAR LINK
+    // ============================================
+    (function() {
+        // Get current pathname (e.g., "/public/dashboard.html")
+        const currentPath = window.location.pathname;
+        
+        // Get filename from path (e.g., "dashboard.html")
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        
+        // Select all nav links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        navLinks.forEach(link => {
+            // Get the href attribute (e.g., "dashboard.html")
+            const linkHref = link.getAttribute('href');
+            
+            // Remove active class from all links
+            link.classList.remove('active');
+            
+            // Add active class if href matches current page
+            if (linkHref === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    })();
+
+    // ============================================
+    // HAMBURGER MENU FUNCTIONALITY
+    // ============================================
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
 
@@ -29,4 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    
 });

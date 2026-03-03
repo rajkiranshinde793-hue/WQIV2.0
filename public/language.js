@@ -36,11 +36,7 @@ const translations = {
         "x_axis": "X-Axis (Parameter 1)",
         "y_axis": "Y-Axis (Parameter 2)",
         "plot_graph": "Plot Graph",
-<<<<<<< HEAD
         "dashboard_note": "Disclaimer: The values for hardness, salinity, and Total Suspended Solids (TSS) are estimated using IoT sensor data and algorithmic calculations. These readings are intended for real-time monitoring and indicative purposes only and may not match certified laboratory test results. For regulatory, medical, or critical decision-making, please verify water quality through an accredited laboratory.",
-=======
-        "dashboard_note": "Note:- Hardness, Chlorides, TSS, Salinity and Heavy metals are derived hence may not be 100% correct",
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         
         // Alerts
         "water_quality_alerts": "WATER QUALITY ALERTS",
@@ -61,14 +57,9 @@ const translations = {
         "generate_custom_report": "Generate Custom Report",
         
         // Home Page
-<<<<<<< HEAD
         "JAL_NETRA": "JAL NETRA",
         "tag_line": "Eyes on Every Drop",
 
-=======
-        "water_quality_monitoring": "Water Quality Monitoring",
-        
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         // Footer
         "privacy_policy": "Privacy Policy",
         "raj_shinde": "Raj Shinde:",
@@ -117,11 +108,7 @@ const translations = {
         "x_axis": "X-अक्ष (पैरामीटर 1)",
         "y_axis": "Y-अक्ष (पैरामीटर 2)",
         "plot_graph": "ग्राफ बनाएं",
-<<<<<<< HEAD
         "dashboard_note": "डिस्क्लेमर: हार्डनेस, सैलिनिटी और टोटल सस्पेंडेड सॉलिड्स (TSS) की वैल्यू का अनुमान IoT सेंसर डेटा और एल्गोरिदमिक कैलकुलेशन का इस्तेमाल करके लगाया जाता है। ये रीडिंग सिर्फ़ रियल-टाइम मॉनिटरिंग और इंडिकेटिव मकसद के लिए हैं और सर्टिफाइड लैबोरेटरी टेस्ट के नतीजों से मैच नहीं कर सकती हैं। रेगुलेटरी, मेडिकल या ज़रूरी फैसले लेने के लिए, कृपया किसी एक्रेडिटेड लैबोरेटरी से पानी की क्वालिटी वेरिफाई करें।",
-=======
-        "dashboard_note": "नोट:- कठोरता, क्लोराइड, TSS, लवणता और भारी धातु व्युत्पन्न हैं इसलिए 100% सही नहीं हो सकते",
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         
         // Alerts
         "water_quality_alerts": "पानी की गुणवत्ता अलर्ट",
@@ -142,13 +129,9 @@ const translations = {
         "generate_custom_report": "कस्टम रिपोर्ट बनाएं",
         
         // Home Page
-<<<<<<< HEAD
         "JAL_NETRA": "जल नेत्र",
         "tag_line": "हर बूंद पर हमारी नज़र",
 
-=======
-        "water_quality_monitoring": "पानी की गुणवत्ता निगरानी",
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         
         // Footer
         "privacy_policy": "गोपनीयता नीति",
@@ -198,11 +181,7 @@ const translations = {
         "x_axis": "X-अक्ष (पैरामीटर 1)",
         "y_axis": "Y-अक्ष (पैरामीटर 2)",
         "plot_graph": "ग्राफ काढा",
-<<<<<<< HEAD
         "dashboard_note": "अस्वीकरण: कडकपणा, खारटपणा आणि एकूण निलंबित घन पदार्थ (TSS) साठी मूल्ये IoT सेन्सर डेटा आणि अल्गोरिथमिक गणना वापरून अंदाजित केली जातात. हे वाचन केवळ रिअल-टाइम देखरेख आणि सूचक हेतूंसाठी आहेत आणि प्रमाणित प्रयोगशाळा चाचणी निकालांशी जुळत नाहीत. नियामक, वैद्यकीय किंवा गंभीर निर्णय घेण्यासाठी, कृपया मान्यताप्राप्त प्रयोगशाळेद्वारे पाण्याची गुणवत्ता सत्यापित करा.",
-=======
-        "dashboard_note": "नोंद:- कठोरता, क्लोराइड, TSS, खारटपणा आणि जड धातू व्युत्पन्न असल्याने 100% योग्य नसू शकतात",
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         
         // Alerts
         "water_quality_alerts": "पाण्याची गुणवत्ता अलर्ट",
@@ -223,12 +202,8 @@ const translations = {
         "generate_custom_report": "कस्टम रिपोर्ट तयार करा",
         
         // Home Page
-<<<<<<< HEAD
         "JAL_NETRA": "जल नेत्र",
         "tag_line": "हर बूंद पर हमारी नज़र",
-=======
-        "water_quality_monitoring": "पाण्याची गुणवत्ता निरीक्षण",
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
         
         // Footer
         "privacy_policy": "गोपनीयता धोरण",

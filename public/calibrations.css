@@ -197,8 +197,6 @@
     opacity: 1;
 }
 
-<<<<<<< HEAD
-=======
 /* --- HARDWARE & SETTINGS GRID --- */
 .hw-settings-grid {
     display: grid;
@@ -262,7 +260,6 @@
     border-color: var(--primary-accent);
 }
 
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 /* =========================================
    MOBILE RESPONSIVENESS
 ========================================= */

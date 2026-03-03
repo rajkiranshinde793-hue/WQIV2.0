@@ -43,10 +43,6 @@ const database = getDatabase(app);
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 // ==========================================
 // 4. SAFETY THRESHOLDS
 // ==========================================
@@ -135,7 +131,6 @@ async function fetchWaterQualityData() {
 // ==========================================
 
 /**
-<<<<<<< HEAD
  * Get current selected language
  * @returns {string} - Current language code
  */
@@ -158,19 +153,14 @@ function getLanguageName(langCode) {
 }
 
 /**
-=======
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
  * Build the system prompt with current data and thresholds
  * @param {object} data - Water quality sensor data
  * @returns {string} - Complete system prompt
  */
 function buildSystemPrompt(data) {
-<<<<<<< HEAD
     const currentLang = getCurrentLanguage();
     const langName = getLanguageName(currentLang);
     
-=======
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     // Format the data for the prompt
     let dataStr = "CURRENT WATER QUALITY DATA:\n";
     dataStr += "─────────────────────────\n";
@@ -197,14 +187,11 @@ function buildSystemPrompt(data) {
     dataStr += `Salinity: max ${thresholds.salinity.max} ppm\n`;
     dataStr += `Heavy Metals: max ${thresholds.metals.max} g/cm³\n`;
     
-<<<<<<< HEAD
     // Add language instruction
     if (currentLang !== 'en') {
         dataStr += `\nIMPORTANT: You MUST respond in ${langName} language. All your responses should be in ${langName}.\n`;
     }
     
-=======
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     return dataStr;
 }
 

@@ -337,57 +337,17 @@ function listenToLiveData() {
 }
 
 /**
-<<<<<<< HEAD
- * Fetch historical sensor data and generate alerts
- */
-function fetchHistoricalAlerts() {
-    const historyRef = ref(database, 'sensor_history');
-    
-    // Query last 50 readings ordered by key
-    const historyQuery = query(
-        historyRef,
-        orderByKey(),
-        limitToLast(50)
-    );
-=======
  * Fetch historical sensor data and generate alerts & maintenance logs
  */
 function fetchHistoricalAlerts() {
     const historyRef = ref(database, 'sensor_history');
     const historyQuery = query(historyRef, orderByKey(), limitToLast(50));
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     
     onValue(historyQuery, (snapshot) => {
         const data = snapshot.val();
         const alertHistory = [];
         
         if (data) {
-<<<<<<< HEAD
-            // Use forEach to iterate (maintains chronological order with Firebase push keys)
-            snapshot.forEach((childSnapshot) => {
-                const reading = childSnapshot.val();
-                
-                // Check for threshold violations
-                const violations = checkForAlerts(reading);
-                
-                if (violations.length > 0) {
-                    // Get the most critical violation for this reading
-                    const criticalViolation = violations.find(v => v.status === 'danger') || violations[0];
-                    const risk = criticalViolation.status === 'danger' ? 'High' : 'Warning';
-                    
-                    // Use timestamp if available, otherwise use Firebase key timestamp
-                    const timestamp = reading.timestamp || childSnapshot.key;
-                    
-                    const alert = {
-                        date: formatDate(timestamp),
-                        time: formatTime(timestamp),
-                        type: 'Water Quality',
-                        message: criticalViolation.message,
-                        risk: risk
-                    };
-                    
-                    alertHistory.push(alert);
-=======
             snapshot.forEach((childSnapshot) => {
                 const reading = childSnapshot.val();
                 const timestamp = reading.timestamp || childSnapshot.key;
@@ -417,7 +377,6 @@ function fetchHistoricalAlerts() {
                             risk: risk
                         });
                     }
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
                 }
             });
         }

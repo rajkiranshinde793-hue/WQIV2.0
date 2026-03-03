@@ -117,12 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const phTempChart = createCombinedChart('phTempChart', 'pH', 'Temperature', '(0-14)', '(°C)');
     const tdsEcChart = createCombinedChart('tdsEcChart', 'TDS', 'EC', '(PPM)', '(S/M)');
     const turbTssChart = createCombinedChart('turbTssChart', 'Turbidity', 'TSS', '(NTU)', '(PPM)');
-<<<<<<< HEAD
-=======
-    const hardChlorChart = createCombinedChart('hardChlorChart', 'Hardness', 'Chlorides', '(N/mm²)', '(Mmol/L)');
-    const salMetalsChart = createCombinedChart('salMetalsChart', 'Salinity', 'Heavy Metals', '(PPM)', '(g/cm³)');
-
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     // Function to analyze parameter and return status
     function analyzeParameter(param, value) {
         const val = parseFloat(value);
@@ -240,16 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
         turbTssChart.data.datasets[1].data = dataHistory.tss;
         turbTssChart.update();
 
-<<<<<<< HEAD
-=======
-        hardChlorChart.data.datasets[0].data = dataHistory.hardness;
-        hardChlorChart.data.datasets[1].data = dataHistory.chlorides;
-        hardChlorChart.update();
-
-        salMetalsChart.data.datasets[0].data = dataHistory.salinity;
-        salMetalsChart.data.datasets[1].data = dataHistory.metals;
-        salMetalsChart.update();
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
     }
 
     // ============================================
@@ -299,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dataHistory.metals = [];
 
         // Iterate through data using forEach() to guarantee chronological order
-<<<<<<< HEAD
       let startTime = null;
 
 snapshot.forEach((childSnapshot) => {
@@ -323,26 +306,6 @@ snapshot.forEach((childSnapshot) => {
     dataHistory.turbidity.push(data.turbidity || 0);
     dataHistory.tss.push(data.tss || 0);
 });
-=======
-        snapshot.forEach((childSnapshot) => {
-            const data = childSnapshot.val();
-            
-            // Handle missing timestamp - use "Logged" or generate current time
-            const label = data.timestamp ? data.timestamp : "Logged";
-            
-            dataHistory.labels.push(label);
-            dataHistory.ph.push(data.ph || 0);
-            dataHistory.temp.push(data.temp || 0);
-            dataHistory.tds.push(data.tds || 0);
-            dataHistory.ec.push(data.ec || 0);
-            dataHistory.turbidity.push(data.turbidity || 0);
-            dataHistory.tss.push(data.tss || 0);
-            dataHistory.hardness.push(data.hardness || 0);
-            dataHistory.chlorides.push(data.chlorides || 0);
-            dataHistory.salinity.push(data.salinity || 0);
-            dataHistory.metals.push(data.metals || 0);
-        });
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 
         // Update all charts with the retrieved history data
         updateAllCharts();
@@ -475,7 +438,6 @@ snapshot.forEach((childSnapshot) => {
         customGraphModal.style.display = 'block';
     };
 
-<<<<<<< HEAD
    plotCustomGraphBtn.onclick = function() {
 
     const xParam = xAxisSelect.value;
@@ -559,47 +521,6 @@ snapshot.forEach((childSnapshot) => {
         customChart.update();
     }
 }
-=======
-    plotCustomGraphBtn.onclick = function() {
-        const xParam = xAxisSelect.value;
-        const yParam = yAxisSelect.value;
-        const ctx = document.getElementById('customModalChart').getContext('2d');
-        
-        if (customChart) customChart.destroy();
-
-        customChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dataHistory.labels,
-                datasets: [{
-                    label: paramNames[xParam] + ' vs ' + paramNames[yParam],
-                    data: dataHistory[yParam],
-                    borderColor: colorBlue,
-                    backgroundColor: 'rgba(90, 141, 248, 0.1)',
-                    fill: true, tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false,
-                animation: { duration: 0 },
-                plugins: { legend: { position: 'top' } },
-                scales: {
-                    x: { title: { display: true, text: 'Time' }, ticks: { maxRotation: 45, minRotation: 45 } },
-                    y: { title: { display: true, text: paramNames[yParam] + ' ' + paramUnits[yParam] } }
-                }
-            }
-        });
-    };
-
-    function updateCustomChart() {
-        if (customChart) {
-            const yParam = yAxisSelect.value;
-            customChart.data.labels = dataHistory.labels;
-            customChart.data.datasets[0].data = dataHistory[yParam];
-            customChart.update();
-        }
-    }
->>>>>>> 765792b939d4a2ca95e764c40e8c0a0e3800d94c
 
     // Hook into updateDashboardUI
     const originalUpdateDashboardUI = updateDashboardUI;
