@@ -3,7 +3,7 @@
 ========================================= */
 :root {
     --primary-accent: #FE7693; 
-    --text-light: #F2F2F2;     
+    --text-light: #e2d9d9;     
     --bg-main: #060619; 
     --logo-blue: #5A8DF8; 
     
@@ -198,16 +198,46 @@ body.home-page::before {
     display: flex;
     flex-direction: column;
     align-items: flex-start; 
-    gap: 25px;
     margin-top: -10vh; 
 }
-
 .main-title {
     font-family: var(--font-heading);
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.5px;
+    margin-bottom: 6px;   /* small space */
+}
+
+.hero-tagline {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;        /* Make bold */
+    letter-spacing: 0.5px;
+    margin-bottom: 32px;     /* More space before buttons */
+    opacity: 0.9;
+}
+
+/* JAL NETRA Special Styling */
+.main-title[data-translate="JAL_NETRA"] {
+    background: linear-gradient(
+        90deg,
+        var(--logo-blue),
+        #00e5ff,
+        var(--primary-accent),
+        var(--logo-blue)
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: smoothGradient 6s ease-in-out infinite;
+}
+
+@keyframes smoothGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-btn {
