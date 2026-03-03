@@ -1,0 +1,90 @@
+.mode-container { padding-top: 80px; padding-bottom: 80px; }
+.mode-cards-wrapper { display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap; }
+.mode-card {
+    background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; padding: 40px 30px; width: 350px; text-align: center;
+    transition: transform 0.3s;
+}
+.mode-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.5); }
+.mode-card h2 { font-family: var(--font-heading); color: var(--text-light); margin-bottom: 15px; }
+.mode-card p { font-family: var(--font-body); color: rgba(255, 255, 255, 0.7); margin-bottom: 30px; line-height: 1.5; }
+.mode-btn { 
+    font-family: var(--font-heading); font-weight: bold; font-size: 1rem;
+    padding: 12px 25px; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; color: white;
+}
+.blue-btn { background-color: #5A8DF8; }
+.blue-btn:hover { background-color: #4371d6; }
+.pink-btn { background-color: #FE7693; }
+.pink-btn:hover { background-color: #d65a75; }
+.start-btn { background-color: #2ecc71; margin-top: 20px; font-size: 1.2rem; padding: 15px 40px; }
+.start-btn:hover { background-color: #27ae60; }
+.status-message {
+    text-align: center; margin-top: 40px; font-family: var(--font-heading); 
+    font-size: 1.3rem; color: #f1c40f; padding: 15px; background: rgba(241, 196, 15, 0.1);
+    border-radius: 8px; border: 1px solid #f1c40f; max-width: 600px; margin-left: auto; margin-right: auto;
+<<<<<<< HEAD
+}
+/* ===============================
+   MOBILE RESPONSIVE FIX
+=============================== */
+@media (max-width: 768px) {
+
+    .report-options,
+    .mode-options {
+        flex-direction: column !important;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .report-card,
+    .mode-card {
+        width: 100% !important;
+        max-width: 95%;
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .report-card h2,
+    .mode-card h2 {
+        font-size: 18px;
+    }
+
+    .report-card p,
+    .mode-card p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    /* Reduce heading size */
+    h1 {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    /* Navbar mobile improvement */
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+=======
+>>>>>>> 146104e9905ca4d1d5bf411d50c4923c4a4da6a3
+}

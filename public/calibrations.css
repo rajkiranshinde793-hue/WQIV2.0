@@ -1,0 +1,295 @@
+/* =========================================
+   CALIBRATIONS SPECIFIC STYLES
+========================================= */
+.calib-container {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    color: var(--text-light);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* --- COMMON CARD STYLES --- */
+.calib-card {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    position: relative;
+}
+
+.card-label {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-light);
+    opacity: 0.9;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* --- ROW 1: HEALTH GRID --- */
+.health-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.health-card {
+    height: 140px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.health-value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-light);
+}
+
+/* Critical health color */
+.health-warning {
+    color: var(--primary-accent);
+}
+
+/* --- ROW 2: ACTION GRID (Split Layout) --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Left side takes 2/3, Right takes 1/3 */
+    gap: 30px;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.alert-box {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.alert-message {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-top: 20px; /* Push down past the label */
+}
+
+/* --- BUTTONS --- */
+.button-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.calib-btn {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 25px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.calib-btn:hover, .calib-btn.active-btn {
+    border-color: var(--primary-accent);
+    background: rgba(254, 118, 147, 0.1); /* Faint pink hover */
+    transform: translateY(-3px);
+}
+
+/* --- RIGHT PANEL: INFO BOX --- */
+.info-box {
+    height: 100%; /* Stretches to match left panel height */
+    min-height: 300px;
+}
+
+.info-content {
+    margin-top: 40px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+/* --- THE INFO BUTTON & TOOLTIPS --- */
+.info-btn {
+    position: absolute; /* Locks it to the top right corner */
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    cursor: help;
+    transition: all 0.3s ease;
+    color: var(--text-light);
+    z-index: 5;
+}
+
+.info-btn:hover {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.info-tooltip {
+    visibility: hidden;
+    width: 180px;
+    background-color: rgba(6, 6, 25, 0.95);
+    color: var(--text-light);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid var(--primary-accent);
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    line-height: 1.4;
+    
+    /* Position the tooltip above the button */
+    position: absolute;
+    z-index: 10;
+    bottom: 150%; 
+    left: 50%;
+    margin-left: -90px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.info-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--primary-accent) transparent transparent transparent;
+}
+
+.info-btn:hover .info-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- HARDWARE & SETTINGS GRID --- */
+.hw-settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.hw-content {
+    margin-top: 40px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-family: var(--font-body);
+    opacity: 0.8;
+}
+
+.stat-value {
+    color: var(--text-light);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-row label {
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.cal-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    padding: 10px 15px;
+    border-radius: 6px;
+    width: 160px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 1rem;
+}
+
+.cal-input:focus {
+    border-color: var(--primary-accent);
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+@media (max-width: 900px) {
+    .health-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .button-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+
+    /* --- NEW: Fix Tooltip Overflow on Mobile --- */
+    .info-tooltip {
+        left: auto;
+        right: -10px; /* Anchors the box to the right side so it expands left */
+        margin-left: 0;
+    }
+
+    .info-tooltip::after {
+        left: auto;
+        right: 15px; /* Moves the little pointer arrow to align with the 'i' button */
+        margin-left: 0;
+    }
+}

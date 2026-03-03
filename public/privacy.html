@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Water Quality Monitoring</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Privacy Policy Page Specific Styles */
+        .privacy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 60px 100px;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .privacy-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+        }
+
+        .privacy-subtitle {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .privacy-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .privacy-section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+        }
+
+        .privacy-section p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section li {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .privacy-section a {
+            color: var(--primary-accent);
+            text-decoration: none;
+        }
+
+        .privacy-section a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            background: rgba(254, 118, 147, 0.1);
+            border: 1px solid rgba(254, 118, 147, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info .contact-name {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-container {
+                padding: 40px 25px 100px;
+            }
+
+            .privacy-title {
+                font-size: 2rem;
+            }
+
+            .privacy-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                <li><a href="dashboard.html" class="protected-link" data-redirect="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="calibrations.html" class="protected-link" data-redirect="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="alerts.html" class="protected-link" data-redirect="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" class="protected-link" data-redirect="ai.html" data-translate="ai">AI</a></li>
+                <li class="login-item"><a href="login.html" class="login-btn-nav" data-translate="login">Login</a></li>
+            </ul>
+            
+            <div class="lang-switch">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="privacy-container">
+        <div class="privacy-header">
+            <h1 class="privacy-title" data-translate="privacy_policy">Privacy Policy</h1>
+            <p class="privacy-subtitle">Last updated: January 2025</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>1. Introduction</h2>
+            <p>Welcome to Water Quality Monitoring. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you use our water quality monitoring website and services.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>2. Information We Collect</h2>
+            <p>We may collect the following types of information:</p>
+            <ul>
+                <li><strong>Personal Information:</strong> When you create an account or register, we collect your name, email address, and other contact information.</li>
+                <li><strong>Usage Data:</strong> We collect information about how you interact with our website, including pages visited, time spent, and features used.</li>
+                <li><strong>Sensor Data:</strong> Water quality measurements and readings from your connected monitoring devices.</li>
+                <li><strong>Device Information:</strong> Information about the devices you use to access our services, including IP address, browser type, and operating system.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use the collected information for the following purposes:</p>
+            <ul>
+                <li>To provide, maintain, and improve our water quality monitoring services</li>
+                <li>To process your registration and manage your account</li>
+                <li>To send you important updates, notifications, and alerts about water quality</li>
+                <li>To analyze usage patterns and optimize user experience</li>
+                <li>To comply with legal obligations and protect our rights</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>4. Data Security</h2>
+            <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security assessments and updates</li>
+                <li>Access controls and authentication requirements</li>
+                <li>Secure storage with industry-standard protocols</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>5. Third-Party Services</h2>
+            <p>We may share your information with third-party service providers who assist us in operating our website and providing services. These providers are contractually obligated to maintain the confidentiality of your information and are restricted from using it for any other purpose.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>6. Your Rights</h2>
+            <p>You have the following rights regarding your personal information:</p>
+            <ul>
+                <li><strong>Access:</strong> You can request a copy of the personal information we hold about you.</li>
+                <li><strong>Correction:</strong> You can request correction of inaccurate or incomplete data.</li>
+                <li><strong>Deletion:</strong> You can request deletion of your personal information, subject to legal requirements.</li>
+                <li><strong>Opt-out:</strong> You can unsubscribe from marketing communications at any time.</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>7. Cookies and Tracking Technologies</h2>
+            <p>We use cookies and similar tracking technologies to enhance your browsing experience. You can control cookie settings through your browser preferences. Please note that disabling cookies may affect the functionality of some features.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page and updating the "Last updated" date. We encourage you to review this policy periodically.</p>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+            <p><span class="contact-name" data-translate="raj_shinde">Raj Shinde</span></p>
+            <p>Phone: 9767975375</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>
