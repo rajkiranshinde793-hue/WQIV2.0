@@ -119,54 +119,6 @@
             cursor: not-allowed;
         }
 
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 25px 0;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .divider span {
-            padding: 0 15px;
-        }
-
-        .google-btn {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: white;
-            color: #333;
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .google-btn:hover {
-            background: #f5f5f5;
-            transform: translateY(-2px);
-        }
-
-        .google-btn img {
-            width: 20px;
-            height: 20px;
-        }
-
         .error-message {
             background: rgba(231, 76, 60, 0.2);
             border: 1px solid #e74c3c;
@@ -253,29 +205,6 @@
             border-color: var(--primary-accent);
             color: var(--primary-accent);
         }
-
-        /* Signup specific styles */
-        .signup-toggle {
-            margin-top: 20px;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .signup-toggle a {
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .signup-toggle a:hover {
-            text-decoration: underline;
-        }
-
-        #confirm-password-group,
-        #name-group {
-            display: none;
-        }
     </style>
 </head>
 <body class="login-page">
@@ -311,8 +240,8 @@
     <main class="login-container">
         <div class="login-card">
             <img src="assets/Logo.png" alt="Logo" class="login-logo">
-            <h1 class="login-title" id="page-title">Welcome Back</h1>
-            <p class="login-subtitle" id="page-subtitle">Sign in to access your water quality dashboard</p>
+            <h1 class="login-title" id="page-title">Sign In</h1>
+            <p class="login-subtitle" id="page-subtitle">Sign in to change mode or calibration settings</p>
             
             <div class="error-message" id="error-message"></div>
             
@@ -330,12 +259,6 @@
             
             <!-- Login form -->
             <form class="login-form" id="login-form">
-                <!-- Name field - shown only in signup mode -->
-                <div class="form-group" id="name-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name">
-                </div>
-                
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -346,31 +269,8 @@
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 
-                <!-- Confirm password field - shown only in signup mode -->
-                <div class="form-group" id="confirm-password-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
-                </div>
-                
                 <button type="submit" class="login-btn" id="login-btn">Sign In</button>
             </form>
-            
-            <!-- Signup toggle link -->
-            <p class="signup-toggle" id="signup-toggle">
-                Don't have an account? <a href="#" id="signup-link">Sign Up</a>
-            </p>
-            
-            <!-- Signin toggle link (hidden by default) -->
-            <p class="signup-toggle" id="signin-toggle" style="display: none;">
-                Already have an account? <a href="#" id="signin-link">Sign In</a>
-            </p>
-            
-            <div class="divider"><span>or</span></div>
-            
-            <button class="google-btn" id="google-btn">
-                <img src="https://www.google.com/favicon.ico" alt="Google">
-                Continue with Google
-            </button>
             
             <p class="back-link">
                 <a href="index.html">← Back to Home</a>
@@ -380,9 +280,8 @@
 
     <!-- Firebase SDK -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
         
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -398,28 +297,15 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const googleProvider = new GoogleAuthProvider();
 
         // DOM Elements
         const loginForm = document.getElementById('login-form');
         const loginBtn = document.getElementById('login-btn');
-        const googleBtn = document.getElementById('google-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const errorMessage = document.getElementById('error-message');
         const loggedInContent = document.getElementById('logged-in-content');
         const pageTitle = document.getElementById('page-title');
         const pageSubtitle = document.getElementById('page-subtitle');
-        
-        // Signup toggle elements
-        const signupToggle = document.getElementById('signup-toggle');
-        const signinToggle = document.getElementById('signin-toggle');
-        const signupLink = document.getElementById('signup-link');
-        const signinLink = document.getElementById('signin-link');
-        const nameGroup = document.getElementById('name-group');
-        const confirmPasswordGroup = document.getElementById('confirm-password-group');
-        
-        // Signup mode state
-        let isSignupMode = false;
 
         // Check for logout action from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
@@ -442,7 +328,6 @@
                 await signOut(auth);
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('userEmail');
-                // Remove the query parameter and show login form
                 window.history.replaceState({}, document.title, window.location.pathname);
                 showLoginForm();
             } catch (error) {
@@ -453,11 +338,9 @@
         // Show logged in state
         function showLoggedInState(user) {
             loginForm.style.display = 'none';
-            document.querySelector('.divider').style.display = 'none';
-            googleBtn.style.display = 'none';
             loggedInContent.style.display = 'block';
             pageTitle.textContent = 'Already Signed In';
-            pageSubtitle.textContent = 'You are already logged in';
+            pageSubtitle.textContent = 'You are currently logged in';
             
             document.getElementById('user-name').textContent = user.displayName || 'User';
             document.getElementById('user-email').textContent = user.email;
@@ -471,11 +354,9 @@
         // Show login form
         function showLoginForm() {
             loginForm.style.display = 'flex';
-            document.querySelector('.divider').style.display = 'flex';
-            googleBtn.style.display = 'flex';
             loggedInContent.style.display = 'none';
-            pageTitle.textContent = 'Welcome Back';
-            pageSubtitle.textContent = 'Sign in to access your water quality dashboard';
+            pageTitle.textContent = 'Sign In';
+            pageSubtitle.textContent = 'Sign in to change mode or calibration settings';
         }
 
         // Show error message
@@ -486,29 +367,6 @@
                 errorMessage.classList.remove('show');
             }, 5000);
         }
-
-        // Google Sign In
-        googleBtn.addEventListener('click', async () => {
-            googleBtn.disabled = true;
-            googleBtn.textContent = 'Signing in...';
-            
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
-                console.log('Google user:', result.user);
-                
-                // Store auth state
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', result.user.email);
-                
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
-            } catch (error) {
-                console.error('Google login error:', error);
-                showError(getErrorMessage(error.code));
-                googleBtn.disabled = false;
-                googleBtn.innerHTML = '<img src="https://www.google.com/favicon.ico" alt="Google"> Continue with Google';
-            }
-        });
 
         // Logout
         logoutBtn.addEventListener('click', async () => {
@@ -538,121 +396,38 @@
                     return 'Invalid email or password.';
                 case 'auth/too-many-requests':
                     return 'Too many failed attempts. Please try again later.';
-                case 'auth/popup-closed-by-user':
-                    return 'Sign in was cancelled. Please try again.';
-                case 'auth/email-already-in-use':
-                    return 'An account with this email already exists.';
-                case 'auth/weak-password':
-                    return 'Password should be at least 6 characters.';
                 default:
                     return 'An error occurred. Please try again.';
             }
         }
 
-        // Toggle between login and signup modes
-        function toggleSignupMode() {
-            isSignupMode = !isSignupMode;
-            
-            if (isSignupMode) {
-                // Show signup mode
-                nameGroup.style.display = 'block';
-                confirmPasswordGroup.style.display = 'block';
-                signupToggle.style.display = 'none';
-                signinToggle.style.display = 'block';
-                pageTitle.textContent = 'Create Account';
-                pageSubtitle.textContent = 'Sign up to get started';
-                loginBtn.textContent = 'Sign Up';
-            } else {
-                // Show login mode
-                nameGroup.style.display = 'none';
-                confirmPasswordGroup.style.display = 'none';
-                signupToggle.style.display = 'block';
-                signinToggle.style.display = 'none';
-                pageTitle.textContent = 'Welcome Back';
-                pageSubtitle.textContent = 'Sign in to access your water quality dashboard';
-                loginBtn.textContent = 'Sign In';
-            }
-        }
-
-        // Signup link click handler
-        signupLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleSignupMode();
-        });
-
-        // Signin link click handler
-        signinLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleSignupMode();
-        });
-
-        // Modified form submission handler
+        // Form submission handler
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            if (isSignupMode) {
-                // Signup mode
-                const confirmPassword = document.getElementById('confirm-password').value;
-                const name = document.getElementById('name').value;
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log('User logged in:', userCredential.user);
                 
-                // Validate passwords match
-                if (password !== confirmPassword) {
-                    showError('Passwords do not match.');
-                    return;
-                }
+                // Store auth state
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', userCredential.user.email);
                 
-                // Validate password length
-                if (password.length < 6) {
-                    showError('Password should be at least 6 characters.');
-                    return;
-                }
-                
-                loginBtn.disabled = true;
-                loginBtn.textContent = 'Creating account...';
-                
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    console.log('User signed up:', userCredential.user);
-                    
-                    // Store auth state
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', userCredential.user.email);
-                    
-                    // Show success and redirect
-                    alert('Account created successfully!');
-                    window.location.href = 'dashboard.html';
-                } catch (error) {
-                    console.error('Signup error:', error);
-                    showError(getErrorMessage(error.code));
-                } finally {
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = 'Sign Up';
-                }
-            } else {
-                // Login mode
-                loginBtn.disabled = true;
-                loginBtn.textContent = 'Signing in...';
-                
-                try {
-                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                    console.log('User logged in:', userCredential.user);
-                    
-                    // Store auth state
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', userCredential.user.email);
-                    
-                    // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
-                } catch (error) {
-                    console.error('Login error:', error);
-                    showError(getErrorMessage(error.code));
-                } finally {
-                    loginBtn.disabled = false;
-                    loginBtn.textContent = 'Sign In';
-                }
+                // Get redirect URL if present, otherwise go to dashboard
+                const redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+                window.location.href = redirectUrl;
+            } catch (error) {
+                console.error('Login error:', error);
+                showError(getErrorMessage(error.code));
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
             }
         });
     </script>
@@ -686,3 +461,4 @@
     </footer>
 </body>
 </html>
+

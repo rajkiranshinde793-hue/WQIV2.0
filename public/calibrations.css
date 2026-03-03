@@ -261,35 +261,81 @@
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS
+   MOBILE RESPONSIVENESS FIX
 ========================================= */
 @media (max-width: 900px) {
+    /* 1. Reduce overall page padding so content doesn't squeeze */
+    .calib-container {
+        padding: 20px 15px;
+        padding-top: 80px; /* Space for fixed navbar */
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* 2. Stack the Health Cards (pH, TDS, Turbidity) vertically */
     .health-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
-    
+
+    .health-card {
+        height: auto;
+        padding: 40px 20px 20px 20px;
+    }
+
+    /* 3. Stack the Action Panels (Alerts/Buttons and Wizard) */
     .action-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column */
+        gap: 20px;
     }
-    
+
+    /* 4. Stack the pH/TDS/Turbidity action buttons vertically */
     .button-row {
         grid-template-columns: 1fr;
-    }
-    
-    .page-title {
-        font-size: 2rem;
+        gap: 10px;
     }
 
-    /* --- NEW: Fix Tooltip Overflow on Mobile --- */
+    .calib-btn {
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    /* 5. Fix the Wizard/Info Box so it doesn't overflow */
+    .info-box {
+        min-height: auto;
+        padding: 20px;
+    }
+
+    /* 6. Fix Hardware & Twilio Settings */
+    .hw-settings-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    /* Ensure inputs don't push past the screen edge */
+    .cal-input {
+        width: 100%;
+        max-width: 140px;
+    }
+
+    .input-row {
+        gap: 10px;
+    }
+
+    /* 7. Adjust Tooltip for small screens */
     .info-tooltip {
         left: auto;
-        right: -10px; /* Anchors the box to the right side so it expands left */
+        right: 0;
+        width: 160px;
         margin-left: 0;
-    }
-
-    .info-tooltip::after {
-        left: auto;
-        right: 15px; /* Moves the little pointer arrow to align with the 'i' button */
-        margin-left: 0;
+        transform: translateX(10%);
     }
 }

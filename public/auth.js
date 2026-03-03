@@ -1,45 +1,20 @@
-// Authentication helper for protected pages
-// This file should be included in all pages
+// Authentication helper for all pages
+// This file provides auth state tracking but does NOT block page access
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Check if user is logged in via Firebase or localStorage
-    checkAuthState();
-    
     // Update UI based on auth state
     updateNavbarForAuth();
     updateHeroButton();
 });
 
-// Function to check authentication state
-async function checkAuthState() {
-    // Wait for Firebase to initialize if it's being loaded
-    await new Promise(resolve => {
-        setTimeout(resolve, 500); // Give time for Firebase to load
-    });
-    
-    // Get current page
-    const currentPage = window.location.pathname;
-    
-    // Pages that require login (except login page itself)
-    const protectedPages = [
-        'dashboard.html',
-        'calibrations.html',
-        'alerts.html',
-        'ai.html'
-    ];
-    
-    // Check if current page is protected
-    const isProtectedPage = protectedPages.some(page => currentPage.includes(page));
-    
-    if (isProtectedPage) {
-        // Check localStorage for login status (fallback)
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-        if (!isLoggedIn) {
-            // Not logged in, redirect to login
-            window.location.href = '../login.html?redirect=' + encodeURIComponent(window.location.href);
-        }
-    }
+// Check if user is logged in (for use by other scripts)
+function isLoggedIn() {
+    return localStorage.getItem('isLoggedIn') === 'true';
+}
+
+// Get user email (for use by other scripts)
+function getUserEmail() {
+    return localStorage.getItem('userEmail');
 }
 
 // Update navbar based on login state
@@ -47,12 +22,12 @@ function updateNavbarForAuth() {
     const navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
     
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const isLoggedInVal = isLoggedIn();
     
     // Check if login/logout item already exists
     let authItem = navLinks.querySelector('.auth-item');
     
-    if (isLoggedIn) {
+    if (isLoggedInVal) {
         // User is logged in - show logout only
         if (!authItem) {
             authItem = document.createElement('li');
@@ -88,9 +63,9 @@ function updateHeroButton() {
     const heroLoginBtn = document.getElementById('hero-login-btn');
     if (!heroLoginBtn) return;
     
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const isLoggedInVal = isLoggedIn();
     
-    if (isLoggedIn) {
+    if (isLoggedInVal) {
         // Hide the hero login button when logged in
         heroLoginBtn.style.display = 'none';
     } else {
@@ -101,31 +76,19 @@ function updateHeroButton() {
     }
 }
 
-// Handle protected link clicks
-document.addEventListener('click', function(e) {
-    // Check if clicked element is a protected link
-    const protectedLink = e.target.closest('.protected-link');
-    if (protectedLink) {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-        if (!isLoggedIn) {
-            e.preventDefault();
-            const redirect = protectedLink.getAttribute('data-redirect') || protectedLink.getAttribute('href');
-            window.location.href = 'login.html?redirect=' + encodeURIComponent(redirect);
-        }
-    }
-});
+// Handle logout
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userEmail');
+    window.location.href = 'login.html';
+}
 
 // Export functions for use in other scripts
 window.authHelper = {
-    checkAuthState,
-    updateNavbarForAuth,
-    updateHeroButton,
-    isLoggedIn: () => localStorage.getItem('isLoggedIn') === 'true',
-    getUserEmail: () => localStorage.getItem('userEmail'),
-    logout: () => {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('userEmail');
-        window.location.href = 'login.html';
-    }
+    isLoggedIn: isLoggedIn,
+    getUserEmail: getUserEmail,
+    logout: logout,
+    updateNavbarForAuth: updateNavbarForAuth,
+    updateHeroButton: updateHeroButton
 };
+

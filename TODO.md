@@ -1,43 +1,21 @@
-# AI.js Rewrite Task - COMPLETED
+# Login/Logout Logic Changes - COMPLETED
 
-## Task: Integrate Groq API with Firebase Realtime Database for AI-powered water quality analysis
+## Task: Allow free navigation, require login only for mode change and calibration settings
 
-### Files Updated:
-- [x] 1. Analyze requirements and gather information from existing files
-- [x] 2. Rewrite public/ai.js with Groq API integration
-- [x] 3. Update public/ai.html with chat interface elements
-- [x] 4. Update public/ai.css with chat styles matching dark theme
+### Changes:
+- [x] 1. Update login.html - Remove signup and Google sign-in, keep only email/password sign-in
+- [x] 2. Update auth.js - Remove page protection that redirects to login (users can navigate freely)
+- [x] 3. Update mode.js - Add authentication check before mode changes
+- [x] 4. calibrations.js - Already has auth check (view is free, change requires login) - no changes needed
+- [x] 5. Update index.html - Remove protected-link classes from nav links
+- [x] 6. Update other HTML files with nav links - no protected-link classes found
 
-### Implementation Summary:
+### Summary:
+- Users can navigate freely anywhere on the website without login
+- Login is ONLY required when:
+  - Changing mode (mode.html)
+  - Changing calibration settings (calibrations.html)
+- Removed signup option from login page
+- Removed Google sign-in option from login page
+- Only email/password sign-in remains
 
-1. **public/ai.js** - Complete rewrite:
-   - Firebase v12 modular SDK for fetching /sensors/water-quality
-   - Groq API integration (llama3-70b-8192) with API key
-   - Analyze Now button: fetch data → construct system prompt → call Groq API
-   - Dynamic chat: conversation history, context maintenance
-   - Loading states and error handling
-   - Target DOM IDs: #chat-messages, #analyze-now-btn, #chat-input-area, #user-chat-input, #send-chat-btn
-   - Warning comment about frontend API security
-
-2. **public/ai.html** - Updated with chat interface:
-   - Kept existing <nav> and <footer>
-   - Replaced main content with chat interface
-   - Included: chat messages container, analyze now button, chat input area
-
-3. **public/ai.css** - Added chat styles:
-   - Match dark theme (rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.4))
-   - Accent colors: #FE7693, #5A8DF8
-   - AI messages (left-aligned, blue theme) vs User messages (right-aligned, pink theme)
-   - Modern chat app appearance with typing indicator animation
-
-### Safety Thresholds (for AI prompt):
-- ph: 6.5-8.5
-- tds: max 500
-- turbidity: max 1
-- ec: max 2.5
-- temp: 15-30
-- hardness: max 120
-- chlorides: max 250
-- tss: max 30
-- salinity: max 1000
-- metals: max 0.01
