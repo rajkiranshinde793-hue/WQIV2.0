@@ -42,43 +42,30 @@
         </div>
     </nav>
 
-    <main class="container ai-container">
-        <h1 class="page-title">AI Water Quality Assistant</h1>
+    <main class="ai-page-wrapper">
+    <div id="ai-intro" class="ai-intro-container">
+        <div class="ai-icon-large">🤖</div>
+        <h1 class="ai-main-title">AI Water Assistant</h1>
+        <p class="ai-greeting">How can I help you today?</p>
         
-        <!-- Chat Interface -->
-        <section class="chat-section">
-            <!-- Analyze Now Button -->
-            <div class="analyze-button-container">
-                <button id="analyze-now-btn" class="analyze-now-btn">
-                    <span class="btn-icon">🔬</span>
-                    <span class="btn-text">Analyze Now</span>
-                </button>
+        <button id="analyze-now-btn" class="main-analyze-btn">
+            <span>🔬 Analyze My Water Quality Now</span>
+        </button>
+        <p class="ai-hint">Instant expert assessment based on your live sensor data</p>
+    </div>
+
+    <div id="chat-section" class="chat-interface" style="display: none;">
+        <div id="chat-messages" class="chat-window">
             </div>
-            
-            <!-- Chat Messages Container -->
-            <div class="chat-container">
-                <div id="chat-messages" class="chat-messages">
-                    <!-- Welcome message -->
-                    <div class="chat-message ai-message">
-                        <div class="message-avatar">🤖</div>
-                        <div class="message-content">
-                            <p>Hello! I'm your AI Water Quality Assistant. I can analyze your water quality data and provide expert recommendations.</p>
-                            <p>Click <strong>"Analyze Now"</strong> to get started with a comprehensive analysis of your current water quality!</p>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="chat-input-wrapper">
+            <div class="input-container">
+                <input type="text" id="user-chat-input" placeholder="Ask a follow-up question..." autocomplete="off">
+                <button id="send-chat-btn" class="send-btn">➤</button>
             </div>
-            
-            <!-- Chat Input Area (Hidden initially) -->
-            <div id="chat-input-area" class="chat-input-area">
-                <input type="text" id="user-chat-input" class="user-chat-input" placeholder="Ask follow-up questions about your water quality..." />
-                <button id="send-chat-btn" class="send-chat-btn">
-                    <span>Send</span>
-                    <span class="send-icon">➤</span>
-                </button>
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
+</main>
 
     <!-- Firebase SDK -->
     <script type="module">
