@@ -52,12 +52,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+   // ==========================================
+    // 1. SECURITY: AUTHENTICATION CHECK
     // ==========================================
-    // 2. EXPIRY & HISTORY LOGIC
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            isAuthorized = true;
+            btnPh.disabled = false; btnTds.disabled = false; 
+            btnTurb.disabled = false; btnReset.disabled = false;
+        } else {
+            isAuthorized = false;
+            wizardDisplay.innerHTML = `<span style="color: #e74c3c; font-weight: bold;">🔒 You must be Logged In to perform calibrations.</span>`;
+            [btnPh, btnTds, btnTurb, btnReset].forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+            });
+            btnPh.innerHTML = "Login<br>Required";
+            btnTds.innerHTML = "Login<br>Required";
+            btnTurb.innerHTML = "Login<br>Required";
+        }
+    });
+
+    // ==========================================
+    // 2. EXPIRY & HISTORY LOGIC (Your Updated Version)
     // ==========================================
     onValue(lastCalRef, (snapshot) => {
         const ts = snapshot.val();
-        if (ts) {
+        
+        // --- NEW: Handle Factory Reset (Timestamp is 0 or missing) ---
+        if (!ts || ts === 0) {
+            document.getElementById("last-cal-date").innerText = "None";
+            document.getElementById("expiry-warning").style.display = "block";
+            document.getElementById("expiry-warning").innerHTML = "⚠️ Calibration Not Done Yet. Factory defaults active.";
+            document.getElementById("calibration-alert").innerText = "CALIBRATION REQUIRED";
+            document.getElementById("calibration-alert").style.color = "#e74c3c";
+        } 
+        // --- Normal Timestamp Logic ---
+        else {
             // Check if ESP32 sent seconds or milliseconds
             const ms = ts > 9999999999 ? ts : ts * 1000; 
             const calDate = new Date(ms);
@@ -66,21 +98,56 @@ document.addEventListener("DOMContentLoaded", () => {
             const daysSince = (Date.now() - ms) / (1000 * 60 * 60 * 24);
             if (daysSince > 30) {
                 document.getElementById("expiry-warning").style.display = "block";
+                document.getElementById("expiry-warning").innerHTML = "⚠️ Calibration is older than 30 days. Recalibration recommended.";
                 document.getElementById("calibration-alert").innerText = "RECALIBRATION OVERDUE";
                 document.getElementById("calibration-alert").style.color = "#e74c3c";
             } else {
                 document.getElementById("expiry-warning").style.display = "none";
-                document.getElementById("calibration-alert").innerText = "ALL SENSORS HEALTHY";
+                document.getElementById("calibration-alert").innerText = "CALIBRATION UP TO DATE";
                 document.getElementById("calibration-alert").style.color = "#2ecc71";
             }
         }
     });
 
-    // Listen to live ESP32 status updates
+    // Listen to live ESP32 status updates for the loading spinner
     onValue(statusRef, (snapshot) => {
         currentStatus = snapshot.val();
     });
-// ==========================================
+
+    // ==========================================
+    // 2.5 LIVE HARDWARE & SENSOR HEALTH LISTENER (The New Math!)
+    // ==========================================
+    const hwRef = ref(database, 'sensors/hardware');
+    onValue(hwRef, (snapshot) => {
+        const hw = snapshot.val();
+        if (hw) {
+            // Update Battery Dashboard (Bottom of the page)
+            if(document.getElementById("bat-soc")) document.getElementById("bat-soc").innerText = hw.bat_soc.toFixed(0) + "%";
+            if(document.getElementById("bat-volt")) document.getElementById("bat-volt").innerText = hw.bat_volt.toFixed(2) + "V";
+            if(document.getElementById("bat-temp")) document.getElementById("bat-temp").innerText = hw.bat_temp.toFixed(1) + "°C";
+
+            // Update Sensor Health Percentages (Top of the page)
+            const phEl = document.getElementById("health-ph");
+            const tdsEl = document.getElementById("health-tds");
+            const turbEl = document.getElementById("health-turbidity");
+
+            if (phEl) {
+                phEl.innerText = hw.health_ph.toFixed(0) + "%";
+                // Turn text red if health drops below 40%
+                phEl.style.color = hw.health_ph < 40 ? "#e74c3c" : "var(--text-light)"; 
+            }
+            if (tdsEl) {
+                tdsEl.innerText = hw.health_tds.toFixed(0) + "%";
+                tdsEl.style.color = hw.health_tds < 40 ? "#e74c3c" : "var(--text-light)";
+            }
+            if (turbEl) {
+                turbEl.innerText = hw.health_turb.toFixed(0) + "%";
+                turbEl.style.color = hw.health_turb < 40 ? "#e74c3c" : "var(--text-light)";
+            }
+        }
+    });
+
+    // ==========================================
     // 3. INTERACTIVE CALIBRATION WIZARD
     // ==========================================
     
@@ -367,4 +434,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    
 }); // <--- Final closing bracket
