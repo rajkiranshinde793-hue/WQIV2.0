@@ -1,0 +1,14 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "sensor_history": {
+      ".indexOn": ["timestamp"]
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null" 
+    }
+
+  }
+}

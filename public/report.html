@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Report - Water Quality</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mode.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="logo-link">
+        <img src="assets/Logo.png" class="logo-img">
+    </a>
+
+    <div class="nav-right">
+        <ul class="nav-links">
+           <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
+                <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="about.html" class="active" data-translate="about_us">About Us</a></li>
+            <li><a href="report.html" class="active" data-translate="download_report">Download Report</a></li>
+        </ul>
+        
+        <div class="lang-switch">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी</option>
+                <option value="mr">मराठी</option>
+            </select>
+        </div>
+    </div>
+</nav>
+
+<main class="container mode-container">
+
+    <h1 class="page-title" style="text-align:center;" data-translate="generate_water_quality_report">
+        GENERATE WATER QUALITY REPORT
+    </h1>
+
+    <div class="mode-cards-wrapper">
+
+        <div class="mode-card">
+            <h2>Current Reading Report</h2>
+            <p>Generate professional lab report of latest sensor readings.</p>
+            <button id="btn-current-report" class="mode-btn blue-btn">
+                Generate Current Report
+            </button>
+        </div>
+
+        <div class="mode-card">
+            <h2>Date Range Report</h2>
+            <p>Select date range to generate detailed lab report.</p>
+
+            <input type="date" id="from-date"
+                style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none; font-family: 'Montserrat', sans-serif;">
+
+            <input type="date" id="to-date"
+                style="width:100%; padding:10px; margin-bottom:20px; border-radius:6px; border:none; font-family: 'Montserrat', sans-serif;">
+
+            <button id="btn-range-report" class="mode-btn pink-btn">
+                Generate Custom Report
+            </button>
+        </div>
+
+    </div>
+
+</main>
+
+<script src="language.js"></script>
+<script src="script.js"></script>
+<script src="auth.js"></script>
+<script type="module" src="report.js"></script>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <a href="index.html" class="footer-logo">
+                <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                <span class="footer-logo-text">Water Quality Monitoring</span>
+            </a>
+            <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-right">
+            <div class="footer-contact">
+                <span class="footer-contact-icon">📞</span>
+                <span class="footer-contact-name">Raj Shinde:</span>
+                <span class="footer-contact-phone">9767975375</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

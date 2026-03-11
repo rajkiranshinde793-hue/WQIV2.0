@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Water Quality Assistant</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ai.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
+                <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="about.html" class="active" data-translate="about_us">About Us</a></li>
+            </ul>
+            
+            <div class="lang-switch">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="ai-layout">
+        <!-- Left Sidebar -->
+        <aside class="ai-sidebar">
+            <div class="sidebar-header">
+                <button id="back-btn" class="sidebar-back-btn">
+                    <span class="back-icon">←</span>
+                    <span data-translate="back">Back</span>
+                </button>
+                <button id="new-chat-btn" class="new-chat-btn">
+                    <span class="new-chat-icon">+</span>
+                    <span data-translate="new_chat">New Chat</span>
+                </button>
+            </div>
+            <div class="chat-history-list" id="chat-history-list">
+                <!-- Chat history items will be dynamically added here -->
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <div class="ai-main">
+            <div id="ai-intro" class="ai-intro-container">
+                <h1 class="ai-main-title">AI Water Assistant</h1>
+                <p class="ai-greeting">How can I help you today?</p>
+                
+                <button id="analyze-now-btn" class="main-analyze-btn">
+                    <span>🔬 Analyze My Water Quality Now</span>
+                </button>
+                <p class="ai-hint">Instant expert assessment based on your live sensor data</p>
+            </div>
+
+            <div id="chat-section" class="chat-interface" style="display: none;">
+                <div id="chat-messages" class="chat-window">
+                </div>
+
+                <div class="chat-input-wrapper">
+                    <div class="input-container">
+                        <input type="text" id="user-chat-input" placeholder="Ask a follow-up question..." autocomplete="off">
+                        <button id="send-chat-btn" class="send-btn">➤</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAH_qoGe9siWiQ_6OJYvRXWF_T-8Jg2P2U",
+        authDomain: "wqiv1-7588d.firebaseapp.com",
+        databaseURL: "https://wqiv1-7588d-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "wqiv1-7588d",
+        storageBucket: "wqiv1-7588d.firebasestorage.app",
+        messagingSenderId: "1045198749186",
+        appId: "1:1045198749186:web:52657bc9ca7ce4aa36311b"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="language.js"></script>
+    <script type="module" src="ai.js"></script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                    <span class="footer-logo-text" data-translate="water_quality_monitoring">Water Quality Monitoring</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                    <li><a href="privacy.html" data-translate="privacy_policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <span class="footer-contact-icon">📞</span>
+                    <span class="footer-contact-name" data-translate="raj_shinde">Raj Shinde:</span>
+                    <span class="footer-contact-phone">9767975375</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright" data-translate="copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

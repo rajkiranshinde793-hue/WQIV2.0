@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Monitoring</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="mode.html" data-translate="select_mode">Select Mode</a></li>
+                <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
+                <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                <li class="login-item"><a href="login.html" class="login-btn-nav" data-translate="login">Login</a></li>
+            </ul>
+            
+            <div class="lang-switch">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="container hero-section">
+            <div class="hero-content">
+                <h1 class="main-title" data-translate="JAL_NETRA">JAL NETRA</h1>
+              <div class="hero-tagline">
+              <span class="line-one" data-translate="tag_line">Eyes on Every Drop</span>
+             </div>
+
+                <div class="hero-buttons" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 15px; align-items: center;">
+                    <a href="dashboard.html" class="hero-btn" style="margin: 0;" data-translate="live_dashboard">LIVE DASHBOARD</a>
+                    <a href="mode.html" class="hero-btn hero-btn-secondary" style="margin: 0; background: transparent; border: 2px solid #5A8DF8;" data-translate="select_mode">Select Mode</a>
+                    <a href="login.html" class="hero-btn hero-btn-secondary" id="hero-login-btn" data-translate="login">LOGIN</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container about-section">
+            <div class="about-text-col">
+                <h1 class="about-title" data-translate="about_us">ABOUT US</h1>
+                   <p data-translate="about_text_1">
+                    We are developing a low-cost IoT-based Water Quality Monitoring System that provides real-time analysis of key water parameters. Our platform combines smart sensors, cloud connectivity, and AI assistance to deliver instant alerts, intelligent insights, and automated PDF reports. The goal is to enable early detection of contamination and support safe water access, especially in rural and underserved communities.
+                </p>
+                 <p data-translate="about_text_2">
+                    The system continuously monitors important indicators such as pH, turbidity, temperature, TDS, and salinity, allowing users to track water quality anytime and from anywhere through a user-friendly web dashboard. Whenever any parameter crosses safe limits, the system immediately notifies users, enabling quick preventive action. Designed to be portable, affordable, and easy to deploy, our solution bridges the gap between traditional laboratory testing and the need for continuous on-field monitoring while promoting smarter water management and healthier communities.
+                </p>
+                <a href="about.html" class="hero-btn" style="margin-top: 20px;">READ FULL STORY</a>
+            </div>
+
+            <div class="about-image-col">
+                <img src="assets/AboutImage.jpg" alt="About Our Project">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                    <span class="footer-logo-text" data-translate="water_quality_monitoring">Water Quality Monitoring</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                    <li><a href="privacy.html" data-translate="privacy_policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <span class="footer-contact-icon">📞</span>
+                    <span class="footer-contact-name" data-translate="raj_shinde">Raj Shinde:</span>
+                    <span class="footer-contact-phone">9767975375</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright" data-translate="copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="language.js"></script>
+</body>
+</html>

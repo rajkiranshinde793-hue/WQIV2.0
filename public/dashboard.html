@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Dashboard - Water Quality</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/Logo.png" alt="Water Quality Logo" class="logo-img">
+        </a>
+        
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="dashboard.html" data-translate="live_dashboard">Live Dashboard</a></li>
+                <li><a href="alerts.html" data-translate="alerts">Alerts</a></li>
+                <li><a href="ai.html" data-translate="ai">AI</a></li>
+                <li><a href="calibrations.html" data-translate="calibrations">Calibrations</a></li>
+                <li><a href="about.html" class="active" data-translate="about_us">About Us</a></li>
+            </ul>
+            
+            <div class="lang-switch">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+            
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container dashboard-container">
+
+<div class="dashboard-header-wrapper">
+            <h1 class="page-title" style="margin-bottom: 0;" data-translate="live_dashboard">LIVE DASHBOARD</h1>
+            
+            <div class="mode-badge-container">
+                <span id="active-mode-badge" class="badge-text" data-translate="mode_checking">Mode: Checking...</span>
+                <button id="floating-take-reading" class="custom-graph-btn btn-small" style="display: none;" data-translate="take_reading">Take Reading</button>
+            </div>
+        </div>
+
+
+        <div class="dashboard-grid">
+            <div class="sensor-card full-width" data-param="quality">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="water_quality">Water Quality</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Overall safety rating based on combined sensor data.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-quality" data-translate="drinkablespan>
+                <">Drinkable</span class="sensor-status" id="status-quality" data-translate="good">Good</span>
+            </div>
+
+            <div class="sensor-card clickable" data-param="ph">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="ph">pH</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Measures acidity or alkalinity (0-14). 7 is neutral.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-ph">7.01</span>
+                <span class="sensor-status" id="status-ph">Good</span>
+            </div>
+            
+            <div class="sensor-card clickable" data-param="tds">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="tds">TDS</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Total Dissolved Solids: Concentration of dissolved particles in water.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-tds">342 PPM</span>
+                <span class="sensor-status" id="status-tds">Good</span>
+            </div>
+            
+            <div class="sensor-card clickable" data-param="turbidity">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="turbidity">Turbidity</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Measures water clarity. High NTU means cloudy water.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-turbidity">5 NTU</span>
+                <span class="sensor-status" id="status-turbidity">Good</span>
+            </div>
+
+            <div class="sensor-card clickable" data-param="ec">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="ec">EC</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Electrical Conductivity: Indicates the amount of salts/minerals present.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-ec">5.0 S/M</span>
+            </div>
+
+            <div class="sensor-card clickable" data-param="temp">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="temp">TEMP</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Temperature of the water in degrees Celsius.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-temp">25.0 °C</span>
+            </div>
+
+            <div class="sensor-card clickable" data-param="hardness">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="hardness">Hardness</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Concentration of calcium and magnesium ions.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-hardness">20 N/mm²</span>
+                <span class="sensor-status" id="status-hardness">Good</span>
+            </div>
+            
+
+            <div class="sensor-card clickable" data-param="tss">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="tss">TSS</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">Total Suspended Solids: Particles that can be trapped by a filter.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-tss">15 PPM</span>
+                <span class="sensor-status" id="status-tss">Good</span>
+            </div>
+            
+            <div class="sensor-card clickable" data-param="salinity">
+                <div class="card-header">
+                    <span class="sensor-name" data-translate="salinity">Salinity</span>
+                    <div class="info-btn">i
+                        <span class="info-tooltip">The saltiness or dissolved salt content of a body of water.</span>
+                    </div>
+                </div>
+                <span class="sensor-value" id="val-salinity">55 PPM</span>
+                <span class="sensor-status" id="status-salinity">Good</span>
+            </div>
+            
+            
+        </div>
+
+        <p class="dashboard-note" data-translate="dashboard_note">Disclaimer: The values for hardness, salinity, and Total Suspended Solids (TSS) are estimated using IoT sensor data and algorithmic calculations. These readings are intended for real-time monitoring and indicative purposes only and may not match certified laboratory test results. For regulatory, medical, or critical decision-making, please verify water quality through an accredited laboratory.</p>
+
+        <!-- Custom Graph Button -->
+        <button id="customGraphBtn" class="custom-graph-btn" data-translate="custom_graph">Custom Graph</button>
+
+        <!-- Modal for Individual Parameter Graphs -->
+        <div id="graphModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <h2 id="modalTitle" class="modal-title" data-translate="parameter_vs_time">Parameter vs Time</h2>
+                <div class="modal-chart-wrapper">
+                    <canvas id="modalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Graph Modal -->
+        <div id="customGraphModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close custom-graph-close">&times;</span>
+                <h2 class="modal-title" data-translate="custom_graph">Custom Graph</h2>
+                <div class="custom-graph-form">
+                    <div class="form-group">
+                        <label for="xAxisSelect" data-translate="x_axis">X-Axis (Parameter 1):</label>
+                        <select id="xAxisSelect">
+                            <option value="ph">pH</option>
+                            <option value="tds">TDS</option>
+                            <option value="turbidity">Turbidity</option>
+                            <option value="ec">EC</option>
+                            <option value="temp">Temperature</option>
+                            <option value="hardness">Hardness</option>
+                            <option value="tss">TSS</option>
+                            <option value="salinity">Salinity</option>
+                        </select>
+                    </div>
+                    <div class="vs-text">vs</div>
+                    <div class="form-group">
+                        <label for="yAxisSelect" data-translate="y_axis">Y-Axis (Parameter 2):</label>
+                        <select id="yAxisSelect">
+                            <option value="ph">pH</option>
+                            <option value="tds" selected>TDS</option>
+                            <option value="turbidity">Turbidity</option>
+                            <option value="ec">EC</option>
+                            <option value="temp">Temperature</option>
+                            <option value="hardness">Hardness</option>
+                            <option value="tss">TSS</option>
+                            <option value="salinity">Salinity</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="plotCustomGraph" class="plot-graph-btn" data-translate="plot_graph">Plot Graph</button>
+                <div class="modal-chart-wrapper">
+                    <canvas id="customModalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics-section">
+            <h2 class="section-title" data-translate="trend_analytics">Trend Analytics</h2>
+
+            <div class="graphs-grid">
+                <div class="graph-container">
+                    <div class="graph-header" data-translate="ph_vs_temperature">pH vs Temperature</div>
+                    <div class="chart-wrapper">
+                        <canvas id="phTempChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <div class="graph-header" data-translate="tds_vs_electrical_conductivity">TDS vs Electrical Conductivity (EC)</div>
+                    <div class="chart-wrapper">
+                        <canvas id="tdsEcChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="graph-container">
+                    <div class="graph-header" data-translate="turbidity_vs_tss">Turbidity vs Total Suspended Solids (TSS)</div>
+                    <div class="chart-wrapper">
+                        <canvas id="turbTssChart"></canvas>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAH_qoGe9siWiQ_6OJYvRXWF_T-8Jg2P2U",
+        authDomain: "wqiv1-7588d.firebaseapp.com",
+        databaseURL: "https://wqiv1-7588d-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "wqiv1-7588d",
+        storageBucket: "wqiv1-7588d.firebasestorage.app",
+        messagingSenderId: "1045198749186",
+        appId: "1:1045198749186:web:52657bc9ca7ce4aa36311b"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="language.js"></script>
+    <script type="module" src="dashboard.js"></script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Logo.png" alt="Water Quality Logo" class="footer-logo-img">
+                    <span class="footer-logo-text" data-translate="water_quality_monitoring">Water Quality Monitoring</span>
+                </a>
+                <ul class="footer-links">
+                    <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                    <li><a href="privacy.html" data-translate="privacy_policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <div class="footer-contact">
+                    <span class="footer-contact-icon">📞</span>
+                    <span class="footer-contact-name" data-translate="raj_shinde">Raj Shinde:</span>
+                    <span class="footer-contact-phone">9767975375</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright" data-translate="copyright">© 2025 Water Quality Monitoring. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
