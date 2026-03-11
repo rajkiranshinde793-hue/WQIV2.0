@@ -324,6 +324,9 @@ const timeout = setTimeout(() => {
     console.log("Groq request timeout");
 }, 20000);
 
+//ADD API KEYS HERE//
+
+
 const GROQ_API_KEY = "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";
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.1-8b-instant";
