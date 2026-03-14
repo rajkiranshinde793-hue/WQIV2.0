@@ -95,7 +95,14 @@ const translations = {
          "safe_interval": "Safe Interval (hr)",
 
          "about_text_1": "We are developing a low-cost IoT-based Water Quality Monitoring System that provides real-time analysis of key water parameters. Our platform combines smart sensors, cloud connectivity, and AI assistance to deliver instant alerts, intelligent insights, and automated PDF reports. The goal is to enable early detection of contamination and support safe water access, especially in rural and underserved communities.",
-         "about_text_2": "The system continuously monitors important indicators such as pH, turbidity, temperature, TDS, and salinity, allowing users to track water quality anytime and from anywhere through a user-friendly web dashboard. Whenever any parameter crosses safe limits, the system immediately notifies users, enabling quick preventive action. Designed to be portable, affordable, and easy to deploy, our solution bridges the gap between traditional laboratory testing and the need for continuous on-field monitoring while promoting smarter water management and healthier communities."
+         "about_text_2": "The system continuously monitors important indicators such as pH, turbidity, temperature, TDS, and salinity, allowing users to track water quality anytime and from anywhere through a user-friendly web dashboard. Whenever any parameter crosses safe limits, the system immediately notifies users, enabling quick preventive action. Designed to be portable, affordable, and easy to deploy, our solution bridges the gap between traditional laboratory testing and the need for continuous on-field monitoring while promoting smarter water management and healthier communities.",
+
+
+         footer_description: "AI-powered water quality monitoring system combining IoT sensors, cloud analytics, and intelligent insights for safe drinking water.",
+         footer_platform: "Platform",
+          footer_project: "Project",
+         footer_team: "Team exLOOP",
+         footer_tagline: "Built with IoT + AI | SDG-6 Clean Water"
     },
     hi: {
         // Navigation
@@ -189,7 +196,14 @@ const translations = {
 
 
          "about_text_1": "हम एक कम लागत वाला IoT-बेस्ड वॉटर क्वालिटी मॉनिटरिंग सिस्टम बना रहे हैं जो पानी के ज़रूरी पैरामीटर्स का रियल-टाइम एनालिसिस देता है। हमारा प्लेटफ़ॉर्म स्मार्ट सेंसर, क्लाउड कनेक्टिविटी और AI असिस्टेंस को मिलाकर तुरंत अलर्ट, इंटेलिजेंट इनसाइट्स और ऑटोमेटेड PDF रिपोर्ट देता है। इसका मकसद कंटैमिनेशन का जल्दी पता लगाना और खास तौर पर ग्रामीण और कम सुविधाओं वाले समुदायों में सुरक्षित पानी तक पहुंच को सपोर्ट करना है।",
-         "about_text_2": "यह सिस्टम pH, टर्बिडिटी, टेम्परेचर, TDS और सैलिनिटी जैसे ज़रूरी इंडिकेटर्स को लगातार मॉनिटर करता है, जिससे यूज़र्स एक यूज़र-फ्रेंडली वेब डैशबोर्ड के ज़रिए कभी भी और कहीं से भी पानी की क्वालिटी ट्रैक कर सकते हैं। जब भी कोई पैरामीटर सेफ़ लिमिट को पार करता है, तो सिस्टम तुरंत यूज़र्स को बताता है, जिससे तुरंत बचाव का एक्शन लिया जा सकता है। पोर्टेबल, सस्ता और इस्तेमाल में आसान होने के लिए डिज़ाइन किया गया हमारा सॉल्यूशन, ट्रेडिशनल लैबोरेटरी टेस्टिंग और लगातार ऑन-फील्ड मॉनिटरिंग की ज़रूरत के बीच के गैप को कम करता है, साथ ही बेहतर वॉटर मैनेजमेंट और हेल्दी कम्युनिटीज़ को बढ़ावा देता है।"
+         "about_text_2": "यह सिस्टम pH, टर्बिडिटी, टेम्परेचर, TDS और सैलिनिटी जैसे ज़रूरी इंडिकेटर्स को लगातार मॉनिटर करता है, जिससे यूज़र्स एक यूज़र-फ्रेंडली वेब डैशबोर्ड के ज़रिए कभी भी और कहीं से भी पानी की क्वालिटी ट्रैक कर सकते हैं। जब भी कोई पैरामीटर सेफ़ लिमिट को पार करता है, तो सिस्टम तुरंत यूज़र्स को बताता है, जिससे तुरंत बचाव का एक्शन लिया जा सकता है। पोर्टेबल, सस्ता और इस्तेमाल में आसान होने के लिए डिज़ाइन किया गया हमारा सॉल्यूशन, ट्रेडिशनल लैबोरेटरी टेस्टिंग और लगातार ऑन-फील्ड मॉनिटरिंग की ज़रूरत के बीच के गैप को कम करता है, साथ ही बेहतर वॉटर मैनेजमेंट और हेल्दी कम्युनिटीज़ को बढ़ावा देता है।",
+        
+         
+         footer_description: "IoT सेंसर, क्लाउड एनालिटिक्स और AI की मदद से सुरक्षित पेयजल के लिए विकसित स्मार्ट जल गुणवत्ता निगरानी प्रणाली।",
+         footer_platform: "प्लेटफॉर्म",
+         footer_project: "प्रोजेक्ट",
+         footer_team: "टीम exLOOP",
+         footer_tagline: "IoT + AI द्वारा निर्मित | SDG-6 स्वच्छ जल"
     },
     mr: {
         // Navigation
@@ -280,7 +294,15 @@ const translations = {
          "safe_interval": "सुरक्षित कालावधी (तास)",
 
          "about_text_1": "आम्ही कमी किमतीची IoT-आधारित पाणी गुणवत्ता देखरेख प्रणाली विकसित करत आहोत जी प्रमुख पाण्याच्या पॅरामीटर्सचे रिअल-टाइम विश्लेषण प्रदान करते. आमचे प्लॅटफॉर्म स्मार्ट सेन्सर्स, क्लाउड कनेक्टिव्हिटी आणि एआय सहाय्य एकत्रित करते जेणेकरून त्वरित सूचना, बुद्धिमान अंतर्दृष्टी आणि स्वयंचलित पीडीएफ अहवाल मिळतील. दूषिततेचे लवकर निदान करणे आणि विशेषतः ग्रामीण आणि वंचित समुदायांमध्ये सुरक्षित पाण्याच्या प्रवेशास समर्थन देणे हे उद्दिष्ट आहे.",
-         "about_text_2": "ही प्रणाली पीएच, टर्बिडिटी, तापमान, टीडीएस आणि क्षारता यासारख्या महत्त्वाच्या निर्देशकांवर सतत लक्ष ठेवते, ज्यामुळे वापरकर्त्यांना वापरकर्ता-अनुकूल वेब डॅशबोर्डद्वारे कधीही आणि कुठूनही पाण्याची गुणवत्ता ट्रॅक करता येते. जेव्हा जेव्हा कोणताही पॅरामीटर सुरक्षित मर्यादा ओलांडतो तेव्हा ही प्रणाली वापरकर्त्यांना त्वरित सूचित करते, ज्यामुळे जलद प्रतिबंधात्मक कारवाई शक्य होते. पोर्टेबल, परवडणारे आणि वापरण्यास सोपे असे डिझाइन केलेले, आमचे समाधान पारंपारिक प्रयोगशाळा चाचणी आणि सतत ऑन-फिल्ड देखरेखीच्या गरजेमधील अंतर भरून काढते आणि स्मार्ट पाणी व्यवस्थापन आणि निरोगी समुदायांना प्रोत्साहन देते."
+         "about_text_2": "ही प्रणाली पीएच, टर्बिडिटी, तापमान, टीडीएस आणि क्षारता यासारख्या महत्त्वाच्या निर्देशकांवर सतत लक्ष ठेवते, ज्यामुळे वापरकर्त्यांना वापरकर्ता-अनुकूल वेब डॅशबोर्डद्वारे कधीही आणि कुठूनही पाण्याची गुणवत्ता ट्रॅक करता येते. जेव्हा जेव्हा कोणताही पॅरामीटर सुरक्षित मर्यादा ओलांडतो तेव्हा ही प्रणाली वापरकर्त्यांना त्वरित सूचित करते, ज्यामुळे जलद प्रतिबंधात्मक कारवाई शक्य होते. पोर्टेबल, परवडणारे आणि वापरण्यास सोपे असे डिझाइन केलेले, आमचे समाधान पारंपारिक प्रयोगशाळा चाचणी आणि सतत ऑन-फिल्ड देखरेखीच्या गरजेमधील अंतर भरून काढते आणि स्मार्ट पाणी व्यवस्थापन आणि निरोगी समुदायांना प्रोत्साहन देते.",
+
+
+
+         footer_description: "IoT सेन्सर्स, क्लाउड अॅनालिटिक्स आणि AI च्या मदतीने सुरक्षित पिण्याच्या पाण्यासाठी तयार केलेली स्मार्ट जल गुणवत्ता प्रणाली.",
+         footer_platform: "प्लॅटफॉर्म",
+         footer_project: "प्रकल्प",
+         footer_team: "टीम exLOOP",
+         footer_tagline: "IoT + AI सह विकसित | SDG-6 स्वच्छ पाणी"
     }
 };
 
